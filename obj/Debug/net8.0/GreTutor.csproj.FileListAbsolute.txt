@@ -26,3 +26,4 @@
 /Users/tranmanhdat/Downloads/GreTutor/obj/Debug/net8.0/GreTutor.pdb
 /Users/tranmanhdat/Downloads/GreTutor/obj/Debug/net8.0/GreTutor.genruntimeconfig.cache
 /Users/tranmanhdat/Downloads/GreTutor/obj/Debug/net8.0/ref/GreTutor.dll
+/Users/tranmanhdat/Downloads/GreTutor/obj/Debug/net8.0/GreTutor.sourcelink.json

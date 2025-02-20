@@ -30,6 +30,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29udGFjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/tranmanhdat/Downloads/GreTutor/Pages/Courses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/tranmanhdat/Downloads/GreTutor/Pages/CoursesDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlc0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tranmanhdat/Downloads/GreTutor/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

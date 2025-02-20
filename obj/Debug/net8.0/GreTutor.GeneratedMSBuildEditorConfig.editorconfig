@@ -9,91 +9,91 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GreTutor
 build_property.RootNamespace = GreTutor
-build_property.ProjectDir = /Users/tranmanhdat/Downloads/GreTutor/
+build_property.ProjectDir = /Users/caonguyenhao/gretutor-starter/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/tranmanhdat/Downloads/GreTutor
+build_property.MSBuildProjectDirectory = /Users/caonguyenhao/gretutor-starter
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/404.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvNDA0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/About.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/Contact.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29udGFjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/Courses.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/Courses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/CoursesDetails.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/CoursesDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291cnNlc0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/Login.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/Register.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Pages/_PageBannerStart.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Pages/_PageBannerStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1BhZ2VCYW5uZXJTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Home/Index.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Home/Privacy.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Home/_IntroductionHomePage.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Home/_IntroductionHomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fSW50cm9kdWN0aW9uSG9tZVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Home/_SliderHomePage.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Home/_SliderHomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fU2xpZGVySG9tZVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/Error.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/_Footer.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/_Header.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/_Layout.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/_Navbar.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/_ViewImports.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/tranmanhdat/Downloads/GreTutor/Views/_ViewStart.cshtml]
+[/Users/caonguyenhao/gretutor-starter/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

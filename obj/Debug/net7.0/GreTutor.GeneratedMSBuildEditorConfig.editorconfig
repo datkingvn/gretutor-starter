@@ -9,89 +9,89 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GreTutor
 build_property.RootNamespace = GreTutor
-build_property.ProjectDir = C:\Users\phamv\Downloads\gretutor\gretutor-starter\
+build_property.ProjectDir = D:\gretutor-starter\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\phamv\Downloads\gretutor\gretutor-starter
+build_property.MSBuildProjectDirectory = D:\gretutor-starter
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/404.cshtml]
+[D:/gretutor-starter/Pages/404.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcNDA0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/About.cshtml]
+[D:/gretutor-starter/Pages/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/Contact.cshtml]
+[D:/gretutor-starter/Pages/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/Courses.cshtml]
+[D:/gretutor-starter/Pages/Courses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/CoursesDetails.cshtml]
+[D:/gretutor-starter/Pages/CoursesDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlc0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/Login.cshtml]
+[D:/gretutor-starter/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/Register.cshtml]
+[D:/gretutor-starter/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Pages/_PageBannerStart.cshtml]
+[D:/gretutor-starter/Pages/_PageBannerStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1BhZ2VCYW5uZXJTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Home/Index.cshtml]
+[D:/gretutor-starter/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Home/Privacy.cshtml]
+[D:/gretutor-starter/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Home/_IntroductionHomePage.cshtml]
+[D:/gretutor-starter/Views/Home/_IntroductionHomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfSW50cm9kdWN0aW9uSG9tZVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Home/_SliderHomePage.cshtml]
+[D:/gretutor-starter/Views/Home/_SliderHomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfU2xpZGVySG9tZVBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/Error.cshtml]
+[D:/gretutor-starter/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/_Footer.cshtml]
+[D:/gretutor-starter/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/_Header.cshtml]
+[D:/gretutor-starter/Views/Shared/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/_Layout.cshtml]
+[D:/gretutor-starter/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/_Navbar.cshtml]
+[D:/gretutor-starter/Views/Shared/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/gretutor-starter/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/_ViewImports.cshtml]
+[D:/gretutor-starter/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/phamv/Downloads/gretutor/gretutor-starter/Views/_ViewStart.cshtml]
+[D:/gretutor-starter/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

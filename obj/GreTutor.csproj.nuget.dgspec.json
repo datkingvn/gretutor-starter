@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\phamv\\Downloads\\gretutor\\gretutor-starter\\GreTutor.csproj": {}
+    "D:\\gretutor-starter\\GreTutor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\phamv\\Downloads\\gretutor\\gretutor-starter\\GreTutor.csproj": {
+    "D:\\gretutor-starter\\GreTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\phamv\\Downloads\\gretutor\\gretutor-starter\\GreTutor.csproj",
+        "projectUniqueName": "D:\\gretutor-starter\\GreTutor.csproj",
         "projectName": "GreTutor",
-        "projectPath": "C:\\Users\\phamv\\Downloads\\gretutor\\gretutor-starter\\GreTutor.csproj",
+        "projectPath": "D:\\gretutor-starter\\GreTutor.csproj",
         "packagesPath": "C:\\Users\\phamv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\phamv\\Downloads\\gretutor\\gretutor-starter\\obj\\",
+        "outputPath": "D:\\gretutor-starter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\phamv\\AppData\\Roaming\\NuGet\\NuGet.Config"

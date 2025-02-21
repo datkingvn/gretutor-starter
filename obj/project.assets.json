@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\phamv\\.nuget\\packages\\": {}
+    "/Users/caonguyenhao/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\gretutor-starter\\GreTutor.csproj",
+      "projectUniqueName": "/Users/caonguyenhao/gretutor-starter/GreTutor.csproj",
       "projectName": "GreTutor",
-      "projectPath": "D:\\gretutor-starter\\GreTutor.csproj",
-      "packagesPath": "C:\\Users\\phamv\\.nuget\\packages\\",
-      "outputPath": "D:\\gretutor-starter\\obj\\",
+      "projectPath": "/Users/caonguyenhao/gretutor-starter/GreTutor.csproj",
+      "packagesPath": "/Users/caonguyenhao/.nuget/packages/",
+      "outputPath": "/Users/caonguyenhao/gretutor-starter/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\phamv\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/caonguyenhao/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -62,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }

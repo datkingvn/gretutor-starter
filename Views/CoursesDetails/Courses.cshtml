@@ -1,9 +1,6 @@
-@page "/courses.html"
 
 @{
     ViewData["Title"] = "Courses";
-    ViewData["PageTitle"] = "My";
-    ViewData["PageSubtitle"] = "Courses";
     Layout = "_Layout";
 }
 
@@ -22,7 +19,7 @@
             </div>
 
             <ul class="category-menu">
-              <li><a class="active" href="#">All Courses - test Git</a></li>
+              <li><a class="active" href="#">All Courses</a></li>
               <li><a href="#">Collections</a></li>
               <li><a href="#">Wishlist</a></li>
               <li><a href="#">Archived</a></li>
@@ -37,8 +34,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-01.jpg"
+                              <a href="@Url.Action("CoursesDetails1", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-01.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -71,7 +68,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-hao.jpg"
+                                              <img src="~/assets/images/author/author-hao.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -83,7 +80,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails1", "CoursesDetails")">
                                       English for Beginners
                                   </a>
                               </h4>
@@ -110,8 +107,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails2", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -144,7 +141,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-tuan.png"
+                                              <img src="~/assets/images/author/author-tuan.png"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -156,7 +153,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails2", "CoursesDetails")">
                                       Business English Essentials
                                   </a>
                               </h4>
@@ -183,8 +180,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-03.jpg"
+                              <a href="@Url.Action("CoursesDetails3", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-03.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -217,7 +214,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-dat.jpg"
+                                              <img src="~/assets/images/author/author-dat.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -229,7 +226,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails3", "CoursesDetails")">
                                       	Advanced English Grammar
                                   </a>
                               </h4>
@@ -256,8 +253,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails4", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -290,7 +287,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-truong.png"
+                                              <img src="~/assets/images/author/author-truong.png"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -302,7 +299,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails4", "CoursesDetails")">
                                       IELTS Preparation Guide
                                   </a>
                               </h4>
@@ -329,8 +326,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails5", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -363,7 +360,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-vu.jpg"
+                                              <img src="~/assets/images/author/author-vu.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -375,7 +372,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails5", "CoursesDetails")">
                                       English Conversation Mastery
                                   </a>
                               </h4>
@@ -402,8 +399,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails6", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -436,7 +433,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-truong.png"
+                                              <img src="~/assets/images/author/author-truong.png"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -448,7 +445,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails6", "CoursesDetails")">
                                       TOEFL Success Strategies
                                   </a>
                               </h4>
@@ -475,8 +472,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails7", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -509,7 +506,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-hao.jpg"
+                                              <img src="~/assets/images/author/author-hao.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -521,7 +518,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails7", "CoursesDetails")">
                                       Everyday English Expressions
                                   </a>
                               </h4>
@@ -548,8 +545,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails8", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -582,7 +579,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-dat.jpg"
+                                              <img src="~/assets/images/author/author-dat.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -594,7 +591,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails8", "CoursesDetails")">
                                       Writing Professional Emails in English
                                   </a>
                               </h4>
@@ -621,8 +618,8 @@
                       <!-- Single Courses Start -->
                       <div class="single-courses">
                           <div class="courses-images">
-                              <a href="courses-details.html">
-                                  <img src="assets/images/courses/courses-02.jpg"
+                              <a href="@Url.Action("CoursesDetails9", "CoursesDetails")">
+                                  <img src="~/assets/images/courses/courses-02.jpg"
                                        alt="Courses" />
                               </a>
 
@@ -655,7 +652,7 @@
                                   <div class="author">
                                       <div class="author-thumb">
                                           <a href="#">
-                                              <img src="assets/images/author/author-vu.jpg"
+                                              <img src="~/assets/images/author/author-vu.jpg"
                                                    alt="Author" />
                                           </a>
                                       </div>
@@ -667,7 +664,7 @@
                               </div>
 
                               <h4 class="title">
-                                  <a href="courses-details.html">
+                                  <a href="@Url.Action("CoursesDetails9", "CoursesDetails")">
                                       Pronunciation Perfected
                                   </a>
                               </h4>

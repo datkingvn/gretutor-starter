@@ -2,10 +2,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GreTutor.Models;
 
-namespace GreTutor.Controllers
+namespace GreTutor.Areas.Staff.Controllers
 {
-
-    public class CoursesDetailsController : Controller
+    public class CoursesStaffController : Controller
     {
         public IActionResult Courses()
         {
@@ -49,5 +48,6 @@ namespace GreTutor.Controllers
         }
 
     }
+
 }
 

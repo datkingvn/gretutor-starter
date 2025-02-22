@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8vdf8J7VIlNz/HTLCq4H6ouY2NeiBSavBc4z2FZyxb1dUJTKHUzo7zMxSik4ZJze/8nLJfTTWLYtp/lQokHZuQ==",
+  "dgSpecHash": "04pmeBGrDHYt3+w+7e0Bdfjf87+wGlcPYvVtbdQsdKmTPqYpzNqEUKgXN9vTZ3zJaTODTD4KG81/dh+I2c3PoA==",
   "success": true,
-  "projectFilePath": "/Users/caonguyenhao/gretutor-starter/GreTutor.csproj",
+  "projectFilePath": "D:\\gretutor-starter\\GreTutor.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

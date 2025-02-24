@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Identity
+@using GreTutor.Models
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">My Account</a>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:void(0);" class="nav-link text-dark"
+                onclick="document.getElementById('logoutForm').submit();">
+                Log out
+            </a>
+            <form id="logoutForm" method="post" asp-area="Identity" asp-page="/Account/Logout"
+                asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" class="d-none">
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

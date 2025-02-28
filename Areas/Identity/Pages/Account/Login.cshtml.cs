@@ -20,13 +20,13 @@ namespace GreTutor.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        private readonly UserManager<AppUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public LoginModel(SignInManager<AppUser> signInManager,
-                          UserManager<AppUser> userManager,
+        public LoginModel(SignInManager<IdentityUser> signInManager,
+                          UserManager<IdentityUser> userManager,
                           ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;

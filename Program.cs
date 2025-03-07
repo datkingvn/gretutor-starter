@@ -4,7 +4,8 @@ using GreTutor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services; 
 using GreTutor.Services;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,14 +53,36 @@ builder.Services.ConfigureApplicationCookie(options => {
     options.AccessDeniedPath = "/AccessDenied";
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Đường dẫn đến trang đăng nhập
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+
+
 var mailSettings = builder.Configuration.GetSection("MailSettings");
 builder.Services.Configure<MailSettings>(mailSettings);
 builder.Services.AddTransient<IEmailSender, SendMailService>();
 
-
-
-
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Allow", policyBuilder =>
+    {
+        policyBuilder.RequireAuthenticatedUser();
+
+    });
+    options.AddPolicy("ShowStaffMenu", pb =>
+    {
+        pb.RequireRole("Staff");
+
+    });
+});
+
+// builder.Services.AddControllersWithViews();
+// builder.Services.AddScoped<RoleManager<IdentityRole>>();
 
 var app = builder.Build();
 
@@ -91,7 +114,19 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roleNames = { "Tutor", "Staff", "Student" };
 
+    foreach (var roleName in roleNames)
+    {
+        if (!await roleManager.RoleExistsAsync(roleName))
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
+}
 
 app.MapRazorPages();
 

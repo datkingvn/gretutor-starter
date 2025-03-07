@@ -67,18 +67,13 @@
                 <li><a href="~/Home">Home</a></li>
                 <li>
                   <a href="#">All Course</a>
-                  <ul class="sub-menu">
-                    <li><a href="~/CoursesDetails/Courses">Courses</a></li>
-                    @* <li>
-                                    <a href="courses-details.html">Courses Details</a>
-                                </li> *@
-                  </ul>
                 </li>
                 <li>
                   <a href="#">Pages </a>
                   <ul class="sub-menu">
                     <li><a href="~/About">About</a></li>
-                    <li><a href="~/Blog">Blog</a></li>
+                    <li><a href="~/Blog/HomeBlog">Home Blog</a></li>
+                    <li><a href="~/Blog">My Blog</a></li>
                   </ul>
                 </li>
                 <li>
@@ -91,6 +86,9 @@
                   </ul>
                 </li>
                 <li><a href="~/Contact">Contact</a></li>
+                <li>
+                  <partial name="_StaffMenu" />
+                </li>
                 <li>
                   <a href="#">Account </a>
                   <ul class="sub-menu">

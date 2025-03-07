@@ -8,37 +8,69 @@ using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
 using GreTutor.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
+
 
 namespace GreTutor.Controllers
 {
+    // [Authorize]
+    // [Authorize(Roles = "Admin,User")]
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BlogController(ApplicationDbContext context)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public BlogController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
 
         // GET: Blog
+        // public async Task<IActionResult> Index()
+        // {
+        //     var blogPosts = await _context.BlogPosts
+        //         .Include(b => b.User) // 🔗 Lấy thông tin User từ bảng Users
+        //         .ToListAsync();
+
+        //     return blogPosts != null ? View(blogPosts) : Problem("Entity set 'ApplicationDbContext.BlogPosts' is null.");
+        // }
+
         public async Task<IActionResult> Index()
         {
+            var userId = _userManager.GetUserId(User); // Lấy ID của user hiện tại
+
             var blogPosts = await _context.BlogPosts
-                .Include(b => b.User) // 🔗 Lấy thông tin User từ bảng Users
+                .Where(b => b.AuthorId == userId) // Chỉ lấy bài viết của user hiện tại
+                .Include(b => b.User) // Lấy thông tin User từ bảng Users
                 .ToListAsync();
 
-            return blogPosts != null ? View(blogPosts) : Problem("Entity set 'ApplicationDbContext.BlogPosts' is null.");
+            return View(blogPosts);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> HomeBlog()
         {
-            if (id == null || _context.BlogPosts == null)
-            {
-                return NotFound();
-            }
+            var approvedBlogs = await _context.BlogPosts
+                .Where(b => b.Status == BlogStatus.Approved)
+                .Include(b => b.User) // Lấy thông tin của tác giả nếu cần hiển thị
+                .OrderByDescending(b => b.Created) // Sắp xếp blog mới nhất ở trên đầu
+                .ToListAsync();
 
+            return View(approvedBlogs);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
             var blogPost = await _context.BlogPosts
+                .Include(b => b.Comments)
+                    .ThenInclude(c => c.User!) // Nếu User có thể null, dùng `c.User!`
                 .FirstOrDefaultAsync(m => m.BlogId == id);
+
             if (blogPost == null)
             {
                 return NotFound();

@@ -27,9 +27,9 @@ namespace GreTutor.Models
         public BlogStatus Status { get; set; }
 
         public virtual IdentityUser? User { get; set; }
+        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
 
-        // Danh sách bình luận
-        // public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     }
 
 }

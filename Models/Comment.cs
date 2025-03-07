@@ -1,35 +1,30 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace GreTutor.Models
 {
+    [Table("Comments")]
     public class Comment
     {
         [Key]
-        public int Id { get; set; }
+        public int CommentId { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(max)")]
         public string Content { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        // 🔹 Khóa ngoại liên kết với BlogPost
         [Required]
-        public int BlogPostId { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
 
-        [ForeignKey("BlogPostId")]
-        public BlogPost BlogPost { get; set; }
+        public string AuthorId { get; set; }
+        [ForeignKey("AuthorId")]
+        public virtual IdentityUser? User { get; set; }
 
-        // 🔹 Khóa ngoại liên kết với User (người bình luận)
-        [Required]
-        public string UserId { get; set; }
-
-        public IdentityUser User { get; set; } // Không cần [ForeignKey] ở đây
+        // Khóa ngoại liên kết với BlogPost
+        public int BlogId { get; set; }
+        [ForeignKey("BlogId")]
+        public virtual BlogPost? BlogPost { get; set; }
     }
 }
-
-

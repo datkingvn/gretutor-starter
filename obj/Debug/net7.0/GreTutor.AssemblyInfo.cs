@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreTutor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04d6482b6d8898d0df6510ac4d9e8dfa22c1eb86")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14fd668d2cebd6c77daa4c30a90c49b9e368c7f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreTutor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreTutor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,26 +10,39 @@
 
 <partial name="_StatusMessage" for="StatusMessage" />
 
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <h1 class="text-center">Set Role cho User: @Model.User?.UserName</h1> 
-            <form id="set-role-form" method="post" asp-action="AddRole" asp-controller="User">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-floating mb-3">
-                    <label asp-for="RoleNames"></label>
-                    @Html.ListBoxFor(m => m.RoleNames, Model.AllRoles, new
-                    {
-                        id = "id-select-roles",
-                        @class = "form-control"
-                    })
-                    <span asp-validation-for="RoleNames" class="text-danger"></span>
+        <div class="col-md-9">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2>Set Role for User: <span class="fw-bold">@Model.User?.UserName</span></h2>
                 </div>
+                <div class="card-body p-4">
+                    <form id="set-role-form" method="post" asp-action="AddRole" asp-controller="User">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a class="btn btn-secondary" asp-action="Index" asp-controller="User">List Member</a>
-            </form>
+                        <div class="mb-3">
+                            <label asp-for="RoleNames" class="form-label fw-bold">Choose the role</label>
+                            @Html.ListBoxFor(m => m.RoleNames, Model.AllRoles, new
+                            {
+                                id = "id-select-roles",
+                                @class = "form-select",
+                                size = "5" // Hiển thị 5 dòng role
+                            })
+                            <span asp-validation-for="RoleNames" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="submit" class="btn btn-success px-4 py-2">
+                                <i class="fas fa-save me-2"></i> Update
+                            </button>
+                            <a class="btn btn-secondary px-4 py-2" asp-action="Index" asp-controller="User">
+                                <i class="fas fa-list me-2"></i> List Member
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

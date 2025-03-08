@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authorizationService
+
+
+@{
+    var resultAuthorize = await authorizationService.AuthorizeAsync(this.User, "ShowStaffMenu");
+}
+
+@if (resultAuthorize.Succeeded)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Manage
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+            <a class="dropdown-item" asp-page="/Role/Index" asp-area="Staff">Role Management</a>
+            <a class="dropdown-item" asp-controller="ManageBlogList" asp-action="Index">Blog List Management</a>
+        </div>
+    </li>
+}

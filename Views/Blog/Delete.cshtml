@@ -1,0 +1,111 @@
+@model GreTutor.Models.BlogPost
+
+@{
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete Blog</title>
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-secondary {
+            background-color: #e9ecef;
+            color: #495057;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ced4da;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .created-info {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h4 class="form-title">Delete Blog Post</h4>
+        <hr />
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="BlogId" />
+            <div class="form-group mb-3">
+                <label class="control-label">Title</label>
+                <p class="form-control-plaintext">@Model.Title</p>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Content</label>
+                <p class="form-control-plaintext">@Model.Content</p>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Created</label>
+                <p class="created-info">@Model.Created.ToString("HH:mm dd/MM/yyyy")</p>
+            </div>
+
+            <div class="btn-container mt-3">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

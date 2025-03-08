@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "List Members";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<h2 class="mt-3 text-center">List Members</h2>
+
+<div class="container" style="max-width: 900px;">
+    <table class="table table-bordered table-sm">
+        <thead class="thead-dark">
+           <tr>
+                <th class="text-center fs-4">User Name</th>
+                <th class="text-center fs-4">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td class="text-center align-middle fs-5">@user.UserName</td>
+                    <td class="text-center">
+                        @if (string.IsNullOrEmpty(user.RoleNames))
+                        {
+                            <a class="btn btn-success " asp-area="Staff" asp-controller="User" asp-action="AddRole" asp-route-id="@user.Id">
+                                Add Role
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-area="Staff" asp-controller="User" asp-action="AddRole" asp-route-id="@user.Id">
+                                @user.RoleNames
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

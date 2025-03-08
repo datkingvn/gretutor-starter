@@ -53,12 +53,12 @@ builder.Services.ConfigureApplicationCookie(options => {
     options.AccessDeniedPath = "/AccessDenied";
 });
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Account/Login"; // Đường dẫn đến trang đăng nhập
-        options.AccessDeniedPath = "/Account/AccessDenied";
-    });
+// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//     .AddCookie(options =>
+//     {
+//         options.LoginPath = "/Account/Login"; // Đường dẫn đến trang đăng nhập
+//         options.AccessDeniedPath = "/Account/AccessDenied";
+//     });
 
 
 var mailSettings = builder.Configuration.GetSection("MailSettings");
@@ -67,26 +67,12 @@ builder.Services.AddTransient<IEmailSender, SendMailService>();
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Allow", policyBuilder =>
-    {
-        policyBuilder.RequireAuthenticatedUser();
+builder.Services.AddControllersWithViews();
 
-    });
-    options.AddPolicy("ShowStaffMenu", pb =>
-    {
-        pb.RequireRole("Staff");
-
-    });
-});
-
-// builder.Services.AddControllersWithViews();
-// builder.Services.AddScoped<RoleManager<IdentityRole>>();
 
 var app = builder.Build();
 
-app.UseStatusCodePagesWithReExecute("/Pages/404.html");
+app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -101,8 +87,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "areas",
@@ -121,7 +108,8 @@ using (var scope = app.Services.CreateScope())
 
     foreach (var roleName in roleNames)
     {
-        if (!await roleManager.RoleExistsAsync(roleName))
+        var roleExists = await roleManager.RoleExistsAsync(roleName);
+        if (!roleExists)
         {
             await roleManager.CreateAsync(new IdentityRole(roleName));
         }

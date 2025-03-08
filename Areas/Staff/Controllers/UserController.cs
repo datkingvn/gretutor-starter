@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using GreTutor.Areas.Staff.Models;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace GreTutor.Areas.Staff.Controllers
 {
     [Area("Staff")]
-    // [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Staff")]
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;

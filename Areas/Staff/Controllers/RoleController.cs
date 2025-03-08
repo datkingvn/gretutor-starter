@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace GreTutor.Areas.Staff.Controllers
 {
     [Area("Staff")]
+    [Authorize(Roles = "Staff")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -23,6 +24,5 @@ namespace GreTutor.Areas.Staff.Controllers
         }
 
     }
-
 }
 

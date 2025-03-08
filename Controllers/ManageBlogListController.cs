@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Models;
 using GreTutor.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GreTutor.Controllers
 {
+    [Authorize(Roles = "Staff")]
     public class ManageBlogListController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -4,9 +4,11 @@ using GreTutor.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GreTutor.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ApplicationDbContext _context;

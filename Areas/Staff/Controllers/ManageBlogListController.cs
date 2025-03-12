@@ -5,8 +5,9 @@ using GreTutor.Models;
 using GreTutor.Data;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GreTutor.Controllers
+namespace GreTutor.Areas.Staff.Controllers
 {
+    [Area("Staff")]
     [Authorize(Roles = "Staff")]
     public class ManageBlogListController : Controller
     {
@@ -25,7 +26,7 @@ namespace GreTutor.Controllers
             .Include(b => b.User)
             .OrderByDescending(b => b.Created)
             .ToListAsync();
-            return View("~/Views/ManageBlogList/Index.cshtml", blogPosts);
+            return View(blogPosts); 
         }
 
         // Action Approve: Đánh dấu BlogPost là Approved
@@ -46,6 +47,7 @@ namespace GreTutor.Controllers
 
         // Action Reject: Đánh dấu BlogPost là Rejected
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Reject(int id)
         {
             var blogPost = await _context.BlogPosts.FindAsync(id);
@@ -60,6 +62,7 @@ namespace GreTutor.Controllers
 
         // Action Delete: Xóa BlogPost khỏi cơ sở dữ liệu
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             var blogPost = await _context.BlogPosts.FindAsync(id);

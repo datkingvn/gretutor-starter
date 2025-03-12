@@ -66,6 +66,8 @@
                 <li><a href="~/Home">Home</a></li>
                 <li>
                   <a href="#">Classroom</a>
+                  <ul class="sub-menu">
+                  </ul>
                 </li>
                 <li>
                   <a href="#">Pages </a>
@@ -75,7 +77,7 @@
                     <li><a href="~/Blog">My Blog</a></li>
                   </ul>
                 </li>
-                <li>
+                @* <li>
                   <a href="~/Classroom/Overview">Overview </a>
                   <ul class="sub-menu">
                     <li><a href="~/Classroom/Students">Student</a></li>
@@ -83,7 +85,7 @@
                     <li><a href="~/Classroom/Engagement">Course Engagement</a></li>
                     <li><a href="~/Classroom/TrafficConversion">Traffic Conversion</a></li>
                   </ul>
-                </li>
+                </li> *@
                 <li><a href="~/Contact">Contact</a></li>
                 <li>
                   <a href="#">Account </a>
@@ -95,22 +97,27 @@
                 </li>
                 @if (User.IsInRole("Staff"))
                 {
-                  <li>
-                    <a href="#">Staff Menu </a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Role" asp-area="Staff">Role
-                          Management</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Staff">User
-                          Management</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="~/ManageBlogList">Blog List Management </a>
-                      </li>
-                    </ul>
-                  </li>
+                    <li>
+                      <a href="#">Staff Menu </a>
+                      <ul class="sub-menu">
+                        <li>
+                          <a class="dropdown-item" asp-action="Index" asp-controller="Role" asp-area="Staff">Role
+                            Management</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" asp-action="Index" asp-controller="User" asp-area="Staff">User
+                            Management</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" asp-action="Index" asp-controller="ManageBlogList" asp-area="Staff">Blog
+                            Management</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" asp-action="Index" asp-controller="Class" asp-area="Staff">Class
+                            Management</a>
+                        </li>
+                      </ul>
+                    </li>
                 }
               </ul>
             </div>

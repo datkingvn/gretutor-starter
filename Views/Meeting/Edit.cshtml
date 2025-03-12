@@ -1,0 +1,36 @@
+@model GreTutor.Models.Meeting
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+<h2>Chỉnh sửa cuộc họp</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ClassId" />
+
+    <label for="Title">Tiêu đề:</label>
+    <input asp-for="Title" required />
+    <span asp-validation-for="Title" class="text-danger"></span>
+
+    <label for="StartTime">Thời gian bắt đầu:</label>
+    <input asp-for="StartTime" type="datetime-local" required />
+    <span asp-validation-for="StartTime" class="text-danger"></span>
+
+    <label for="EndTime">Thời gian kết thúc:</label>
+    <input asp-for="EndTime" type="datetime-local" required />
+    <span asp-validation-for="EndTime" class="text-danger"></span>
+
+    <label for="Location">Địa điểm:</label>
+    <input asp-for="Location" required />
+    <span asp-validation-for="Location" class="text-danger"></span>
+
+    <label for="MeetingLink">Link họp (nếu là Online):</label>
+    <input asp-for="MeetingLink" />
+
+    <label for="Note">Ghi chú:</label>
+    <textarea asp-for="Note"></textarea>
+
+    <button type="submit">Lưu</button>
+</form>
+
+<a asp-action="Index" asp-route-classId="@Model.ClassId">Quay lại danh sách</a>

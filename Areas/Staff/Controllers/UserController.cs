@@ -39,13 +39,13 @@ namespace GreTutor.Areas.Staff.Controllers
             p = Math.Clamp(p, 1, countPages);
 
             var users = await query.Skip((p - 1) * ITEMS_PER_PAGE)
-                                   .Take(ITEMS_PER_PAGE)
-                                   .Select(u => new UserAndRole
-                                   {
-                                       Id = u.Id,
-                                       UserName = u.UserName
-                                   })
-                                   .ToListAsync();
+            .Take(ITEMS_PER_PAGE)
+            .Select(u => new UserAndRole
+            {
+                Id = u.Id,
+                UserName = u.UserName
+            })
+            .ToListAsync();
 
             foreach (var user in users)
             {

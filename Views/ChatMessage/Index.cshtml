@@ -1,0 +1,24 @@
+@model IEnumerable<GreTutor.Models.ChatMessage>
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<h2>Danh sách tin nhắn</h2>
+<table class="table table-hover table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Người gửi</th>
+            <th>Nội dung</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Sender.UserName</td>
+                <td>@item.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>

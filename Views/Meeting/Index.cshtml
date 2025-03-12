@@ -1,0 +1,44 @@
+@model IEnumerable<GreTutor.Models.Meeting>
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+<h2>Danh sách cuộc họp</h2>
+
+<table border="1">
+    <tr>
+        <th>Tiêu đề</th>
+        <th>Thời gian bắt đầu</th>
+        <th>Thời gian kết thúc</th>
+        <th>Địa điểm</th>
+        <th>Ghi chú</th>
+        <th>Hành động</th>
+    </tr>
+    @foreach (var meeting in Model)
+    {
+        <tr>
+            <td>@meeting.Title</td>
+            <td>@meeting.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>@meeting.EndTime.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>
+                @if (!string.IsNullOrEmpty(meeting.MeetingLink))
+                {
+                    <a href="@meeting.MeetingLink" target="_blank">Tham gia Online</a>
+                }
+                else
+                {
+                    @meeting.Location
+                }
+            </td>
+            <td>@meeting.Note</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@meeting.Id">Sửa</a> |
+                <form asp-action="Delete" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@meeting.Id" />
+                    <button type="submit" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-action="Create" asp-route-classId="@ViewBag.ClassId">Tạo cuộc họp</a>

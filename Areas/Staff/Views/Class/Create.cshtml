@@ -1,0 +1,52 @@
+@model GreTutor.Models.Class
+
+@{
+    ViewData["Title"] = "Create New Class";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Create New Class</h3>
+                </div>
+                <div class="card-body">
+                    <hr />
+                    @using (Html.BeginForm())
+                    {
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <!-- Trường nhập liệu cho tên lớp -->
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Thêm các trường khác nếu cần -->
+
+                        <!-- Nút "Create" -->
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">
+                                Create
+                            </button>
+                            <a href="@Url.Action("Index", "Class", new { area = "Staff" })" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,5 @@
 ﻿using GreTutor.Areas.Staff.Models;
-using GreTutor.Data;
+using GreTutor.DbContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

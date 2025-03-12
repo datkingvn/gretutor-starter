@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using GreTutor.Data;
+using GreTutor.DbContext;
 using GreTutor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services; 

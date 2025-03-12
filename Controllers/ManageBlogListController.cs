@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Models;
-using GreTutor.Data;
+using GreTutor.Models.Enums;
+using GreTutor.DbContext;
 
 namespace GreTutor.Controllers
 {

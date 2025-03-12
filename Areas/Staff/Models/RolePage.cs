@@ -1,5 +1,5 @@
 ﻿using System;
-using GreTutor.Data;
+using GreTutor.DbContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

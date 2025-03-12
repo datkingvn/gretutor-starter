@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using GreTutor.Models;
+using GreTutor.Models.Entities;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using GreTutor.Data;
+using GreTutor.DbContext;
 
 namespace GreTutor.Controllers
 {
@@ -45,7 +45,7 @@ namespace GreTutor.Controllers
                 return Unauthorized();
             }
 
-            var comment = new Comment
+            var comment = new BlogComment
             {
                 Content = content,
                 Created = DateTime.Now,

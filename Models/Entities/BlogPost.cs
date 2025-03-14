@@ -40,7 +40,7 @@ public class BlogPost
     /// </summary>
     /// <value></value>
     [Required]
-    [Column(TypeName = "datetime2")]
+    [Column(TypeName = "datetime")]
     public DateTime Created { get; set; } = DateTime.Now;
 
     /// <summary>

@@ -16,22 +16,31 @@ namespace GreTutor.DbContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             base.OnModelCreating(builder);
+
+            // Cấu hình quan hệ cho BlogPost
             builder.Entity<BlogPost>()
-            .HasOne(bp => bp.User)
-            .WithMany()
-            .HasForeignKey(bp => bp.AuthorId)
-            .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(bp => bp.User)
+                .WithMany()
+                .HasForeignKey(bp => bp.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Cấu hình quan hệ cho BlogComment
+            builder.Entity<BlogComment>()
+                .HasOne(c => c.Blog)
+                .WithMany(b => b.Comments)
+                .HasForeignKey(c => c.BlogId);
+
+            // Cấu hình kiểu dữ liệu cho cột Created
+            builder.Entity<BlogPost>()
+                .Property(bp => bp.Created)
+                .HasColumnType("datetime");
 
             builder.Entity<BlogComment>()
-            .HasOne(c => c.Blog)
-            .WithMany(b => b.Comments)
-            .HasForeignKey(c => c.BlogId);
+                .Property(c => c.Created)
+                .HasColumnType("datetime");
 
-            // Bỏ tiền tố AspNet của các bảng: mặc định các bảng trong IdentityDbContext có
-            // tên với tiền tố AspNet như: AspNetUserRoles, AspNetUser ...
-            // Đoạn mã sau chạy khi khởi tạo DbContext, tạo database sẽ loại bỏ tiền tố đó
+            // Loại bỏ tiền tố AspNet
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 var tableName = entityType.GetTableName();

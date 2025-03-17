@@ -1,4 +1,4 @@
-@model IEnumerable<GreTutor.Models.BlogPost>
+@model IEnumerable<GreTutor.Models.Entities.BlogPost>
 @{
     ViewData["Title"] = "Manage Blog List";
     Layout = "_Layout";
@@ -29,11 +29,11 @@
                     <td>@blog.Created.ToString("dd/MM/yyyy HH:mm")</td>
                     <td>@(blog.User?.UserName ?? "Unknown")</td>
                     <td class="text-center">
-                        @if (blog.Status == GreTutor.Models.BlogStatus.Pending)
+                        @if (blog.Status == GreTutor.Models.Enums.BlogStatus.Pending)
                         {
                             <span class="badge bg-warning text-dark">Pending</span>
                         }
-                        else if (blog.Status == GreTutor.Models.BlogStatus.Approved)
+                        else if (blog.Status == GreTutor.Models.Enums.BlogStatus.Approved)
                         {
                             <span class="badge bg-success">Approved</span>
                         }
@@ -43,7 +43,7 @@
                         }
                     </td>
                     <td class="text-center">
-                        @if (blog.Status == GreTutor.Models.BlogStatus.Pending)
+                        @if (blog.Status == GreTutor.Models.Enums.BlogStatus.Pending)
                         {
                             <form action="@Url.Action("Approve", "ManageBlogList", new { area = "Staff" })" method="post"
                                 class="d-inline">

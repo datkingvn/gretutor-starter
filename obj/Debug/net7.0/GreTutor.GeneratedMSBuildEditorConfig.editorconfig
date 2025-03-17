@@ -294,32 +294,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/ChatMessage/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdE1lc3NhZ2UvSW5kZXguY3NodG1s
+[/Users/caonguyenhao/gretutor-starter/Views/Chat/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Engagement.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL0VuZ2FnZW1lbnQuY3NodG1s
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Classwork.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL0NsYXNzd29yay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Overview.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL092ZXJ2aWV3LmNzaHRtbA==
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Reviews.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL1Jldmlld3MuY3NodG1s
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom/People.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL1Blb3BsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom/Students.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL1N0dWRlbnRzLmNzaHRtbA==
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Engagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9FbmdhZ2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom/TrafficConversion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL1RyYWZmaWNDb252ZXJzaW9uLmNzaHRtbA==
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Overview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9PdmVydmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Reviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9SZXZpZXdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Students.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9TdHVkZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/TrafficConversion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9UcmFmZmljQ29udmVyc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/caonguyenhao/gretutor-starter/Views/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/caonguyenhao/gretutor-starter/Views/Document/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRG9jdW1lbnQvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/caonguyenhao/gretutor-starter/Views/Home/Index.cshtml]

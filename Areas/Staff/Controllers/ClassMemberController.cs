@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
-using GreTutor.Models;
+using GreTutor.Models.Entities;
+using GreTutor.Models.ViewModels;
 using GreTutor.Areas.Staff.Models;
 using GreTutor.Areas.Staff.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MimeKit;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 
 namespace GreTutor.Areas.Staff.Controllers
@@ -24,6 +27,7 @@ namespace GreTutor.Areas.Staff.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<UserController> _logger;
+        private readonly IEmailSender _emailSender;
 
         private const int ITEMS_PER_PAGE = 10;
 
@@ -32,6 +36,7 @@ namespace GreTutor.Areas.Staff.Controllers
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<IdentityUser> signInManager,
+            IEmailSender emailSender,
             ILogger<UserController> logger)
         {
             _context = context;
@@ -39,6 +44,7 @@ namespace GreTutor.Areas.Staff.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
             _logger = logger;
+            _emailSender = emailSender;
         }
 
 
@@ -51,7 +57,7 @@ namespace GreTutor.Areas.Staff.Controllers
 
             var classMembers = await _context.ClassMembers
                 .Where(cm => cm.ClassId == classId)
-                .Include(cm => cm.User) 
+                .Include(cm => cm.User)
                 .ToListAsync();
 
             if (classMembers == null || classMembers.Count == 0)
@@ -70,16 +76,27 @@ namespace GreTutor.Areas.Staff.Controllers
             var users = await _userManager.Users.ToListAsync();
             var userViewModels = new List<UserViewModel>();
 
+            // Lấy danh sách UserId đã thuộc bất kỳ lớp nào
+            var usersInClasses = await _context.ClassMembers
+                .Select(cm => cm.UserId)
+                .Distinct()
+                .ToListAsync();
+
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                userViewModels.Add(new UserViewModel
+                var userRole = roles.Any() ? string.Join(", ", roles) : "No Role";
+
+                if (userRole.Contains("Staff") || ((userRole.Contains("Student") || userRole.Contains("Tutor")) && !usersInClasses.Contains(user.Id)))
                 {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    RoleNames = roles.Any() ? string.Join(", ", roles) : "No Role"
-                });
+                    userViewModels.Add(new UserViewModel
+                    {
+                        Id = user.Id,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        RoleNames = userRole
+                    });
+                }
             }
 
             var model = new AddClassMemberViewModel
@@ -131,7 +148,7 @@ namespace GreTutor.Areas.Staff.Controllers
         // }
 
         [HttpPost]
-        public async Task<IActionResult> AddMultipleMembers(int classId, List<string> selectedUsers)
+        public async Task<IActionResult> AddMultipleMembers(int classId, List<string> selectedUsers, [FromServices] IEmailSender emailSender)
         {
             if (selectedUsers == null || !selectedUsers.Any() || classId <= 0)
             {
@@ -142,19 +159,19 @@ namespace GreTutor.Areas.Staff.Controllers
             var existingMembers = await _context.ClassMembers
                 .Where(cm => cm.ClassId == classId && selectedUsers.Contains(cm.UserId))
                 .Select(cm => cm.UserId)
-                .ToListAsync(); // Lấy danh sách UserId đã tồn tại trong lớp
+                .ToListAsync();
 
             var newMembers = new List<ClassMember>();
 
             foreach (var userId in selectedUsers)
             {
-                if (existingMembers.Contains(userId)) continue; // Bỏ qua user đã có trong lớp
+                if (existingMembers.Contains(userId)) continue;
 
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user == null) continue;
 
                 var roles = await _userManager.GetRolesAsync(user);
-                string userRole = roles.FirstOrDefault() ?? "Student"; 
+                string userRole = roles.FirstOrDefault() ?? "Student";
 
                 newMembers.Add(new ClassMember
                 {
@@ -162,13 +179,22 @@ namespace GreTutor.Areas.Staff.Controllers
                     UserId = userId,
                     Role = userRole
                 });
+
+                // Gửi email thông báo
+                string subject = "You have been added to a new class!";
+                string message = $"Hello {user.UserName},<br><br>"
+                               + $"You have been successfully added to class ID: {classId}.<br>"
+                               + "Please check your account for more details.<br><br>"
+                               + "Best regards,<br>eTutoring Team";
+
+                await emailSender.SendEmailAsync(user.Email, subject, message);
             }
 
             if (newMembers.Any())
             {
                 _context.ClassMembers.AddRange(newMembers);
-                await _context.SaveChangesAsync(); 
-                TempData["SuccessMessage"] = $"{newMembers.Count} Member added!";
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"{newMembers.Count} Member(s) added and notified!";
             }
             else
             {
@@ -179,9 +205,10 @@ namespace GreTutor.Areas.Staff.Controllers
         }
 
 
-        
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int classId, string userId)
         {
             if (string.IsNullOrEmpty(userId) || classId <= 0)

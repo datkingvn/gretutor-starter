@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
-using GreTutor.Models;
+using GreTutor.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services; 
+using Microsoft.AspNetCore.Identity.UI.Services;
 using GreTutor.Services;
+using Microsoft.AspNetCore.SignalR;
+using GreTutor.Hubs;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
@@ -22,17 +25,18 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
         .AddDefaultTokenProviders();
 
 // Truy cập IdentityOptions
-builder.Services.Configure<IdentityOptions> (options => {
+builder.Services.Configure<IdentityOptions>(options =>
+{
     // Thiết lập về Password
     options.Password.RequireDigit = false; // Không bắt phải có số
     options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
     options.Password.RequireNonAlphanumeric = false; // Không bắt ký tự đặc biệt
     options.Password.RequireUppercase = false; // Không bắt buộc chữ in
-    options.Password.RequiredLength = 3; 
+    options.Password.RequiredLength = 3;
     options.Password.RequiredUniqueChars = 1; // Số ký tự riêng biệt
 
     // Cấu hình Lockout - khóa user
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes (5); // Khóa 5 phút
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
     options.Lockout.MaxFailedAccessAttempts = 5; // Thất bại 5 lần thì khóa
     options.Lockout.AllowedForNewUsers = true;
 
@@ -47,11 +51,13 @@ builder.Services.Configure<IdentityOptions> (options => {
 
 });
 
-builder.Services.ConfigureApplicationCookie(options => {
-    options.LoginPath = "/Login";
-    options.LogoutPath = "/Logout";
-    options.AccessDeniedPath = "/AccessDenied";
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Login"; // Đúng đường dẫn mặc định của Razor Pages
+    options.LogoutPath = "/Logout"; // Đúng đường dẫn cho Logout
+    options.AccessDeniedPath = "/AccessDenied"; // Đường dẫn khi bị chặn truy cập
 });
+
 
 // builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 //     .AddCookie(options =>
@@ -69,8 +75,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddSignalR();
 var app = builder.Build();
+
 
 app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
 
@@ -115,7 +122,11 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-
+// app.UseEndpoints(endpoints =>
+// {
+//     endpoints.MapHub<ChatHub>("/chathub"); // Định tuyến Hub
+// });
+app.MapHub<ChatHub>("/chatHub");
 app.MapRazorPages();
 
 app.Run();

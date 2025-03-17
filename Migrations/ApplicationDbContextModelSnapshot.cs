@@ -162,6 +162,37 @@ namespace GreTutor.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("GreTutor.Models.CommentDocument", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("DocumentId");
+
+                    b.ToTable("CommentDocuments");
+                });
+
             modelBuilder.Entity("GreTutor.Models.Document", b =>
                 {
                     b.Property<int>("Id")
@@ -501,6 +532,25 @@ namespace GreTutor.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("GreTutor.Models.CommentDocument", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("GreTutor.Models.Document", "Document")
+                        .WithMany("CommentDocuments")
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Document");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("GreTutor.Models.Document", b =>
                 {
                     b.HasOne("GreTutor.Models.Class", "Class")
@@ -596,6 +646,11 @@ namespace GreTutor.Migrations
                     b.Navigation("Documents");
 
                     b.Navigation("Meetings");
+                });
+
+            modelBuilder.Entity("GreTutor.Models.Document", b =>
+                {
+                    b.Navigation("CommentDocuments");
                 });
 #pragma warning restore 612, 618
         }

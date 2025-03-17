@@ -1,4 +1,5 @@
 using GreTutor.Models;
+using GreTutor.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -13,11 +14,12 @@ namespace GreTutor.Data
         }
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Class> Classes { get; set; } 
+        public DbSet<Class> Classes { get; set; }
         public DbSet<ClassMember> ClassMembers { get; set; }
         public DbSet<Meeting> Meetings { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<CommentDocument> CommentDocuments { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,7 +38,7 @@ namespace GreTutor.Data
             .HasOne(c => c.BlogPost)
             .WithMany(b => b.Comments)
             .HasForeignKey(c => c.BlogId)  // 👈 Kiểm tra khóa ngoại!
-            .OnDelete(DeleteBehavior.Cascade);  
+            .OnDelete(DeleteBehavior.Cascade);
 
             //ClassMember - IdentityUser
             builder.Entity<ClassMember>()
@@ -73,6 +75,21 @@ namespace GreTutor.Data
                 .HasForeignKey(cm => cm.ClassId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // CommentDocument - IdentityUser (User có thể có nhiều CommentDocument)
+            builder.Entity<CommentDocument>()
+                .HasOne(cd => cd.User)
+                .WithMany()
+                .HasForeignKey(cd => cd.AuthorId)
+                .OnDelete(DeleteBehavior.NoAction);  // 🔹 Tránh vòng lặp khi xóa User
+
+            // CommentDocument - Document (Document có nhiều CommentDocument)
+            builder.Entity<CommentDocument>()
+                .HasOne(cd => cd.Document)
+                .WithMany(d => d.CommentDocuments)  // 🔹 Sửa thành CommentDocuments
+                .HasForeignKey(cd => cd.DocumentId)
+                .OnDelete(DeleteBehavior.Cascade);  // 🔹 Xóa Document thì xóa CommentDocument luôn
+
+
             // Bỏ tiền tố AspNet của các bảng: mặc định các bảng trong IdentityDbContext có
             // tên với tiền tố AspNet như: AspNetUserRoles, AspNetUser ...
             // Đoạn mã sau chạy khi khởi tạo DbContext, tạo database sẽ loại bỏ tiền tố đó
@@ -83,7 +100,7 @@ namespace GreTutor.Data
                 {
                     entityType.SetTableName(tableName.Substring(6));
                 }
-}
+            }
         }
     }
 }

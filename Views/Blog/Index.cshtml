@@ -1,4 +1,4 @@
-@model IEnumerable<GreTutor.Models.BlogPost>
+@model IEnumerable<GreTutor.Models.Entities.BlogPost>
 
 @{
     ViewData["Title"] = "My Blog";
@@ -38,7 +38,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Content)</td>
                     <td>@item.Created.ToString("dd/MM/yyyy HH:mm")</td>
                     <td>@(item.User?.UserName ?? "Unknown")</td> <!-- 🟢 Hiển thị tên user -->
-                    <td>@Enum.GetName(typeof(BlogStatus), item.Status)</td>
+                    <td>@Enum.GetName(typeof(GreTutor.Models.Enums.BlogStatus), item.Status)</td>
 
                     <td class="text-center">
                         <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-warning btn-sm">

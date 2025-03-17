@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace GreTutor.Models
+namespace GreTutor.Models.ViewModels
 {
     public class UserViewModel
     {

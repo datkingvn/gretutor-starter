@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
 using GreTutor.Models;
+using GreTutor.Models.Enums;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using GreTutor.Models.Entities;
 
 
 

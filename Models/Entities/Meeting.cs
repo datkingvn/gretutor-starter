@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GreTutor.Models
+namespace GreTutor.Models.Entities
 {
     public class Meeting
     {

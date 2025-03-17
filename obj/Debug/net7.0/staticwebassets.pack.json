@@ -1165,6 +1165,14 @@
       "PackagePath": "staticwebassets/assets/scss/widget/_sidebar.scss"
     },
     {
+      "Id": "/Users/caonguyenhao/gretutor-starter/wwwroot/uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png",
+      "PackagePath": "staticwebassets/uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png"
+    },
+    {
+      "Id": "/Users/caonguyenhao/gretutor-starter/wwwroot/uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png",
+      "PackagePath": "staticwebassets/uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png"
+    },
+    {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.GreTutor.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

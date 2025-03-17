@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
-namespace GreTutor.Models
+namespace GreTutor.Models.Entities
 {
     public class Document
     {
@@ -31,6 +29,7 @@ namespace GreTutor.Models
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
+        public virtual ICollection<CommentDocument> CommentDocuments { get; set; } = new List<CommentDocument>();
     }
 
 }

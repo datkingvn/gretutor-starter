@@ -1,4 +1,4 @@
-using GreTutor.Models;
+using GreTutor.Models.ViewModels;
 using System.Collections.Generic;
 
 namespace GreTutor.Areas.Staff.Models.ViewModels

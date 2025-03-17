@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using GreTutor.Data;
-using GreTutor.Models;
+using GreTutor.Models.Entities;
 
 namespace GreTutor.Areas.Staff.Controllers
 {

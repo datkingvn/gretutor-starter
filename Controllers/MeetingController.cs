@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
-using GreTutor.Models;
+using GreTutor.Models.Entities;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GreTutor.Controllers
 {
+    [Authorize]
     public class MeetingController : Controller
     {
         private readonly ApplicationDbContext _context;

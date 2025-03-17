@@ -1,4 +1,4 @@
-﻿namespace GreTutor.Models
+﻿namespace GreTutor.Models.Enums
 {
     public enum BlogStatus
     {

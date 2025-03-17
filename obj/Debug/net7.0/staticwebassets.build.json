@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Fk7B/UOgGOQLodljkMrc8QzXKk9PKywtssYCVBU55CE=",
+  "Hash": "6hCOuLe/Wa9FxBxZidoYWW6N+JT5t8ZtAMk+55wpDdo=",
   "Source": "GreTutor",
   "BasePath": "_content/GreTutor",
   "Mode": "Default",
@@ -6684,6 +6684,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/scss/widget/_sidebar.scss"
+    },
+    {
+      "Identity": "/Users/caonguyenhao/gretutor-starter/wwwroot/uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png",
+      "SourceId": "GreTutor",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/caonguyenhao/gretutor-starter/wwwroot/",
+      "BasePath": "_content/GreTutor",
+      "RelativePath": "uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png"
+    },
+    {
+      "Identity": "/Users/caonguyenhao/gretutor-starter/wwwroot/uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png",
+      "SourceId": "GreTutor",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/caonguyenhao/gretutor-starter/wwwroot/",
+      "BasePath": "_content/GreTutor",
+      "RelativePath": "uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png"
     }
   ]
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GreTutor.Data;
 using Microsoft.AspNetCore.Authorization;
+using GreTutor.Models.Entities;
 
 namespace GreTutor.Controllers
 {
@@ -97,7 +98,7 @@ namespace GreTutor.Controllers
             var currentUserId = _userManager.GetUserId(User);
 
             // Kiểm tra quyền chỉnh sửa: chỉ cho phép người tạo hoặc admin chỉnh sửa
-            if (comment.AuthorId != currentUserId && !User.IsInRole("Admin"))
+            if (comment.AuthorId != currentUserId && !User.IsInRole("Staff"))
             {
                 return Forbid(); // Trả về lỗi 403 nếu không có quyền
             }
@@ -111,8 +112,5 @@ namespace GreTutor.Controllers
             // Chuyển hướng về trang chi tiết bài viết chứa bình luận
             return RedirectToAction("Details", "Blog", new { id = comment.BlogId });
         }
-
-
-
     }
 }

@@ -1,0 +1,59 @@
+@model List<GreTutor.Models.Entities.ClassMember>
+
+@{
+    ViewData["Title"] = "Class Members";
+    Layout = "_Layout";
+    var isStaff = User.IsInRole("Staff"); // Kiểm tra nếu user có role Staff
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="container d-flex justify-content-center flex-column align-items-center">
+    <h2 class="mb-4">Member List</h2>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered text-center w-75">
+            <thead class="table-dark">
+                <tr>
+                    <th>Member Name</th>
+                    <th>Member Email</th>
+                    <th>Member Role</th>
+                    @if (isStaff)
+                    {
+                        <th>Action</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var member in Model)
+                {
+                    <tr>
+                        <td>@member.User?.UserName</td>
+                        <td>@member.User?.Email</td>
+                        <td>@ViewBag.UserRoles[member.UserId]</td>
+                        @if (isStaff)
+                        {
+                            <td>
+                                <form asp-action="RemoveMember" asp-controller="Classroom" asp-route-memberId="@member.UserId"
+                                    asp-route-classId="@ViewBag.ClassId" method="post"
+                                    onsubmit="return confirm('Are you sure you want to remove this member?');">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning w-75 text-center">No members found in this class.</div>
+    }
+
+    <a href="@Url.Action("Index", "Classroom")" class="btn btn-success mt-3">Back to Classroom</a>
+</div>

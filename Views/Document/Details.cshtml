@@ -1,0 +1,147 @@
+@model GreTutor.Models.ViewModels.DocumentViewModel
+@{
+    ViewData["Title"] = "Comments Document";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<div class="text-center mb-4">
+    <h2>File name: @Model.Title</h2>
+</div>
+
+<h3 class="text-center mb-4">List of Comments</h3>
+
+<!-- Display comments -->
+<div class="comments-list">
+    @if (Model.CommentDocuments != null && Model.CommentDocuments.Any())
+    {
+        @foreach (var commentDocument in Model.CommentDocuments)
+        {
+            <div class="comment mb-3 p-3 border rounded shadow-sm">
+                <p><strong>@commentDocument.User.UserName</strong> - @commentDocument.Created</p>
+
+                <!-- Nội dung bình luận -->
+                <p id="content-@commentDocument.CommentId">@commentDocument.Content</p>
+
+                @if (User.Identity.Name == commentDocument.User.UserName)
+                {
+                    <form id="edit-form-@commentDocument.CommentId" method="post" asp-action="EditComment" asp-controller="Document"
+                        style="display:none;">
+                        <input type="hidden" name="commentId" value="@commentDocument.CommentId" />
+                        <input type="hidden" name="documentId" value="@Model.DocumentId" />
+                        <textarea class="form-control" rows="4" name="content">@commentDocument.Content</textarea>
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Save</button>
+                        <button type="button" class="btn btn-secondary btn-sm mt-2"
+                            onclick="hideEditForm(@commentDocument.CommentId)">Cancel</button>
+                    </form>
+
+                    <!-- Hiển thị nút Edit nếu người dùng là chủ của comment -->
+                    <button class="btn btn-warning btn-sm" onclick="showEditForm(@commentDocument.CommentId)">Edit</button>
+                }
+
+                @if (User.Identity.Name == commentDocument.User.UserName || User.IsInRole("Staff"))
+                {
+                    <form action="@Url.Action("DeleteComment", "Document", new { id = commentDocument.CommentId })" method="post"
+                        style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this comment?');">Delete</button>
+                    </form>
+                }
+            </div>
+        }
+
+    }
+    else
+    {
+        <p class="text-muted">No comments yet.</p>
+    }
+</div>
+
+
+</div>
+
+<!-- Add a Comment Form -->
+<div class="text-center mt-4">
+    <h3>Add a Comment</h3>
+    <form asp-action="AddComment" method="post">
+        <div class="form-group">
+            <textarea class="form-control" name="Content" rows="4" placeholder="Write your comment here..."
+                required></textarea>
+        </div>
+        <input type="hidden" name="DocumentId" value="@Model.DocumentId" /> <!-- Chuyển DocumentId vào form -->
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+
+    </form>
+    <a href="@Url.Action("Index", "Classroom")" class="btn btn-danger mt-2">Back to Classroom</a>
+</div>
+
+<script>
+    function showEditForm(commentId) {
+        document.getElementById("content-" + commentId).style.display = "none"; // Ẩn nội dung bình luận
+        document.getElementById("edit-form-" + commentId).style.display = "block"; // Hiển thị form chỉnh sửa
+    }
+
+    function hideEditForm(commentId) {
+        document.getElementById("content-" + commentId).style.display = "block"; // Hiển thị lại nội dung bình luận
+        document.getElementById("edit-form-" + commentId).style.display = "none"; // Ẩn form chỉnh sửa
+    }
+</script>
+
+
+
+<!-- Add custom CSS for styling -->
+<style>
+    /* Style for the comments */
+    .comments-list {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .comment {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .btn-primary {
+        margin-top: 10px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Style for action buttons (Edit/Delete) */
+    .comment-actions {
+        margin-top: 10px;
+    }
+
+    .comment-actions .btn {
+        margin-right: 5px;
+    }
+
+    /* Hover effect for buttons */
+    .comment-actions .btn:hover {
+        opacity: 0.8;
+    }
+
+    /* Style for Add Comment form */
+    .form-group textarea {
+        resize: vertical;
+    }
+</style>

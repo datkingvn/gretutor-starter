@@ -53,19 +53,10 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Login"; // Đúng đường dẫn mặc định của Razor Pages
-    options.LogoutPath = "/Logout"; // Đúng đường dẫn cho Logout
-    options.AccessDeniedPath = "/AccessDenied"; // Đường dẫn khi bị chặn truy cập
+    options.LoginPath = "/Login"; 
+    options.LogoutPath = "/Logout"; 
+    options.AccessDeniedPath = "/AccessDenied"; 
 });
-
-
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//     .AddCookie(options =>
-//     {
-//         options.LoginPath = "/Account/Login"; // Đường dẫn đến trang đăng nhập
-//         options.AccessDeniedPath = "/Account/AccessDenied";
-//     });
-
 
 var mailSettings = builder.Configuration.GetSection("MailSettings");
 builder.Services.Configure<MailSettings>(mailSettings);
@@ -73,11 +64,12 @@ builder.Services.AddTransient<IEmailSender, SendMailService>();
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddScoped<ZoomService>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSignalR();
 var app = builder.Build();
-
 
 app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
 
@@ -122,10 +114,7 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-// app.UseEndpoints(endpoints =>
-// {
-//     endpoints.MapHub<ChatHub>("/chathub"); // Định tuyến Hub
-// });
+
 app.MapHub<ChatHub>("/chatHub");
 app.MapRazorPages();
 

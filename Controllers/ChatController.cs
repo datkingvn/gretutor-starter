@@ -44,33 +44,33 @@ namespace GreTutor.Controllers
 
 
         // Gửi tin nhắn
-        // [HttpPost]
-        // public async Task<IActionResult> SendMessage(int classId, string messageContent)
-        // {
-        //     if (string.IsNullOrEmpty(messageContent))
-        //     {
-        //         ModelState.AddModelError("", "Nội dung tin nhắn không được để trống.");
-        //         return RedirectToAction("Index", new { classId });
-        //     }
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(int classId, string messageContent)
+        {
+            if (string.IsNullOrEmpty(messageContent))
+            {
+                ModelState.AddModelError("", "Nội dung tin nhắn không được để trống.");
+                return RedirectToAction("Index", new { classId });
+            }
 
-        //     var user = await _userManager.GetUserAsync(User);
-        //     if (user == null)
-        //     {
-        //         return Unauthorized();
-        //     }
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
 
-        //     var chatMessage = new ChatMessage
-        //     {
-        //         ClassId = classId,
-        //         SenderId = user.Id,
-        //         Message = messageContent,
-        //         SentAt = DateTime.UtcNow
-        //     };
+            var chatMessage = new ChatMessage
+            {
+                ClassId = classId,
+                SenderId = user.Id,
+                Message = messageContent,
+                SentAt = DateTime.UtcNow
+            };
 
-        //     _context.ChatMessages.Add(chatMessage);
-        //     await _context.SaveChangesAsync();
+            _context.ChatMessages.Add(chatMessage);
+            await _context.SaveChangesAsync();
 
-        //     return RedirectToAction("Index", new { classId });
-        // }
+            return RedirectToAction("Index", new { classId });
+        }
     }
 }

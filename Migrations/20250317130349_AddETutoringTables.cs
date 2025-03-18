@@ -144,7 +144,9 @@ namespace GreTutor.Migrations
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(255)", nullable: false),
                     MeetingLink = table.Column<string>(type: "nvarchar(512)", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(1000)", nullable: true)
+                    RecordingLink = table.Column<string>(type: "nvarchar(512)", nullable: true),
+                    Note = table.Column<string>(type: "nvarchar(1000)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,6 +157,33 @@ namespace GreTutor.Migrations
                         principalTable: "Classes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CommentDocuments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DocumentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommentDocuments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_CommentDocuments_Documents_DocumentId",
+                        column: x => x.DocumentId,
+                        principalTable: "Documents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CommentDocuments_Users_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -181,6 +210,16 @@ namespace GreTutor.Migrations
                 name: "IX_ClassMembers_UserId",
                 table: "ClassMembers",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CommentDocuments_AuthorId",
+                table: "CommentDocuments",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CommentDocuments_DocumentId",
+                table: "CommentDocuments",
+                column: "DocumentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Documents_ClassId",
@@ -232,10 +271,13 @@ namespace GreTutor.Migrations
                 name: "ClassMembers");
 
             migrationBuilder.DropTable(
-                name: "Documents");
+                name: "CommentDocuments");
 
             migrationBuilder.DropTable(
                 name: "Meetings");
+
+            migrationBuilder.DropTable(
+                name: "Documents");
 
             migrationBuilder.DropTable(
                 name: "Classes");

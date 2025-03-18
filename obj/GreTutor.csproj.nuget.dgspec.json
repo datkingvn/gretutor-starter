@@ -110,6 +110,14 @@
             "MimeKit": {
               "target": "Package",
               "version": "[4.10.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.1, )"
+            },
+            "ZoomNet": {
+              "target": "Package",
+              "version": "[0.89.0, )"
             }
           },
           "imports": [

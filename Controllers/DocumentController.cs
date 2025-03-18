@@ -155,27 +155,32 @@ namespace GreTutor.Controllers
         // DELETE action to delete a comment
         public IActionResult DeleteComment(int id)
         {
-            // Eagerly load the associated Document with the CommentDocument
             var commentDocument = _context.CommentDocuments
-                                          .Include(c => c.Document)  // Eagerly load the Document navigation property
+                                          .Include(c => c.Document)
                                           .FirstOrDefault(c => c.CommentId == id);
 
             if (commentDocument == null)
             {
-                return NotFound();  // If the comment document isn't found, return 404
+                return NotFound();
             }
 
-            // Check if the user has the right to delete the comment
-            if (User.Identity.Name != commentDocument.AuthorId && !User.IsInRole("Staff"))
+            // Lấy User ID từ Claims
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var authorId = commentDocument.AuthorId.ToString();
+
+            Console.WriteLine($"Current User ID: {userId}, Author ID: {authorId}");
+
+            if (authorId != userId && !User.IsInRole("Staff"))
             {
-                return Unauthorized();  // Only the author or staff can delete
+                Console.WriteLine("Access Denied: User is neither Author nor Staff");
+                return Forbid();
             }
 
-            // Remove the comment document from the database
             _context.CommentDocuments.Remove(commentDocument);
             _context.SaveChanges();
 
-            // Redirect to the document details page using the DocumentId
+            TempData["SuccessMessage"] = "Comment deleted successfully.";
+
             return RedirectToAction("Details", "Document", new { id = commentDocument.DocumentId });
         }
 

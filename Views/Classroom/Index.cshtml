@@ -77,6 +77,10 @@
             </div>
 
             <div class="d-flex justify-content-center mt-4 gap-3">
+                <a href="@Url.Action("Index", "Meeting", new { classId = Model.ClassMembers.FirstOrDefault()?.ClassId })"
+                    class="btn btn-secondary px-4">
+                    Meeting
+                </a>
                 <a href="@Url.Action("Classwork", "Classroom", new { classId = Model.ClassMembers.FirstOrDefault()?.ClassId })"
                     class="btn btn-primary px-4">
                     Classwork

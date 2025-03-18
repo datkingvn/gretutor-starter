@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreTutor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250315193901_AddCommentDocumentModel")]
-    partial class AddCommentDocumentModel
+    [Migration("20250317130349_AddETutoringTables")]
+    partial class AddETutoringTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace GreTutor.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GreTutor.Models.BlogPost", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.BlogPost", b =>
                 {
                     b.Property<int>("BlogId")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace GreTutor.Migrations
                     b.ToTable("BlogPosts");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.ChatMessage", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.ChatMessage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,7 +89,7 @@ namespace GreTutor.Migrations
                     b.ToTable("ChatMessages");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Class", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Class", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +106,7 @@ namespace GreTutor.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.ClassMember", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.ClassMember", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace GreTutor.Migrations
                     b.ToTable("ClassMembers");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Comment", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Comment", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
@@ -165,7 +165,7 @@ namespace GreTutor.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.CommentDocument", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.CommentDocument", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
@@ -196,7 +196,7 @@ namespace GreTutor.Migrations
                     b.ToTable("CommentDocuments");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Document", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Document", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +231,7 @@ namespace GreTutor.Migrations
                     b.ToTable("Documents");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Meeting", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Meeting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -241,6 +241,9 @@ namespace GreTutor.Migrations
 
                     b.Property<int>("ClassId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -254,6 +257,9 @@ namespace GreTutor.Migrations
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("RecordingLink")
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
@@ -467,7 +473,7 @@ namespace GreTutor.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GreTutor.Models.BlogPost", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.BlogPost", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
@@ -478,9 +484,9 @@ namespace GreTutor.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.ChatMessage", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.ChatMessage", b =>
                 {
-                    b.HasOne("GreTutor.Models.Class", "Class")
+                    b.HasOne("GreTutor.Models.Entities.Class", "Class")
                         .WithMany("ChatMessages")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -497,9 +503,9 @@ namespace GreTutor.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.ClassMember", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.ClassMember", b =>
                 {
-                    b.HasOne("GreTutor.Models.Class", "Class")
+                    b.HasOne("GreTutor.Models.Entities.Class", "Class")
                         .WithMany("ClassMembers")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -516,7 +522,7 @@ namespace GreTutor.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Comment", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Comment", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
@@ -524,7 +530,7 @@ namespace GreTutor.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GreTutor.Models.BlogPost", "BlogPost")
+                    b.HasOne("GreTutor.Models.Entities.BlogPost", "BlogPost")
                         .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -535,7 +541,7 @@ namespace GreTutor.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.CommentDocument", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.CommentDocument", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
@@ -543,7 +549,7 @@ namespace GreTutor.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("GreTutor.Models.Document", "Document")
+                    b.HasOne("GreTutor.Models.Entities.Document", "Document")
                         .WithMany("CommentDocuments")
                         .HasForeignKey("DocumentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -554,9 +560,9 @@ namespace GreTutor.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Document", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Document", b =>
                 {
-                    b.HasOne("GreTutor.Models.Class", "Class")
+                    b.HasOne("GreTutor.Models.Entities.Class", "Class")
                         .WithMany("Documents")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -573,9 +579,9 @@ namespace GreTutor.Migrations
                     b.Navigation("UploadedBy");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Meeting", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Meeting", b =>
                 {
-                    b.HasOne("GreTutor.Models.Class", "Class")
+                    b.HasOne("GreTutor.Models.Entities.Class", "Class")
                         .WithMany("Meetings")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -635,12 +641,12 @@ namespace GreTutor.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GreTutor.Models.BlogPost", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.BlogPost", b =>
                 {
                     b.Navigation("Comments");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Class", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Class", b =>
                 {
                     b.Navigation("ChatMessages");
 
@@ -651,7 +657,7 @@ namespace GreTutor.Migrations
                     b.Navigation("Meetings");
                 });
 
-            modelBuilder.Entity("GreTutor.Models.Document", b =>
+            modelBuilder.Entity("GreTutor.Models.Entities.Document", b =>
                 {
                     b.Navigation("CommentDocuments");
                 });

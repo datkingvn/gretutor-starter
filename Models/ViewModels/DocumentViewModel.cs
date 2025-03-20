@@ -13,7 +13,6 @@ namespace GreTutor.Models.ViewModels
 
         public int ClassId { get; set; }
 
-        // Thêm thuộc tính DocumentId vào ViewModel
         public int DocumentId { get; set; }
         public ICollection<CommentDocument> CommentDocuments { get; set; } = new List<CommentDocument>();
     }

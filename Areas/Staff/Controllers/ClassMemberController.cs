@@ -69,8 +69,6 @@ namespace GreTutor.Areas.Staff.Controllers
             return View(classMembers);
         }
 
-
-
         public async Task<IActionResult> Add(int classId)
         {
             var users = await _userManager.Users.ToListAsync();
@@ -87,7 +85,8 @@ namespace GreTutor.Areas.Staff.Controllers
                 var roles = await _userManager.GetRolesAsync(user);
                 var userRole = roles.Any() ? string.Join(", ", roles) : "No Role";
 
-                if (userRole.Contains("Staff") || ((userRole.Contains("Student") || userRole.Contains("Tutor")) && !usersInClasses.Contains(user.Id)))
+                // 🚀 Kiểm tra nếu user đã thuộc bất kỳ lớp nào thì bỏ qua
+                if (!usersInClasses.Contains(user.Id))
                 {
                     userViewModels.Add(new UserViewModel
                     {
@@ -107,6 +106,7 @@ namespace GreTutor.Areas.Staff.Controllers
 
             return View(model);
         }
+
 
         // Xử lý khi nhấn nút Add
         // [HttpPost]
@@ -204,9 +204,6 @@ namespace GreTutor.Areas.Staff.Controllers
             return RedirectToAction("Index", new { classId });
         }
 
-
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Remove(int classId, string userId)
@@ -214,7 +211,7 @@ namespace GreTutor.Areas.Staff.Controllers
             if (string.IsNullOrEmpty(userId) || classId <= 0)
             {
                 TempData["ErrorMessage"] = "Invalid data.";
-                return RedirectToAction("Index", new { classId });
+                return RedirectToAction("Add", new { classId }); // 🔄 Chuyển về Add để hiển thị lại danh sách
             }
 
             var classMember = await _context.ClassMembers
@@ -222,33 +219,18 @@ namespace GreTutor.Areas.Staff.Controllers
 
             if (classMember == null)
             {
-                TempData["ErrorMessage"] = "No members found.";
-                return RedirectToAction("Index", new { classId });
+                TempData["ErrorMessage"] = "No member found in this class.";
+                return RedirectToAction("Add", new { classId }); // 🔄 Cũng redirect về Add
             }
 
+            // 🔹 Xóa thành viên khỏi lớp
             _context.ClassMembers.Remove(classMember);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Member deleted successfully!";
-            return RedirectToAction("Index", new { classId });
+            TempData["SuccessMessage"] = "Member removed successfully!";
+
+            return RedirectToAction("Add", new { classId }); // 🚀 Chuyển về trang Add
         }
-
-
-
-        // public async Task<IActionResult> Details(int id)
-        // {
-        //     var classMember = await _context.ClassMembers
-        //         .Include(cm => cm.User)  // Load thông tin User
-        //         .Include(cm => cm.Class) // Load thông tin Class
-        //         .FirstOrDefaultAsync(cm => cm.Id == id);
-
-        //     if (classMember == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(classMember);
-        // }
 
     }
 }

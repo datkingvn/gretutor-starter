@@ -238,8 +238,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvU3RhZmYvVmlld3MvVXNlci9BZGRSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/caonguyenhao/gretutor-starter/Areas/Staff/Views/User/DeletePersonalData.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvU3RhZmYvVmlld3MvVXNlci9EZWxldGVQZXJzb25hbERhdGEuY3NodG1s
+[/Users/caonguyenhao/gretutor-starter/Areas/Staff/Views/User/ConfirmDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvU3RhZmYvVmlld3MvVXNlci9Db25maXJtRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/caonguyenhao/gretutor-starter/Areas/Staff/Views/User/Index.cshtml]
@@ -308,26 +308,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/caonguyenhao/gretutor-starter/Views/Classroom/People.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tL1Blb3BsZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Engagement.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9FbmdhZ2VtZW50LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Overview.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9PdmVydmlldy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Reviews.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9SZXZpZXdzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/Students.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9TdHVkZW50cy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/caonguyenhao/gretutor-starter/Views/Classroom2/TrafficConversion.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhc3Nyb29tMi9UcmFmZmljQ29udmVyc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/caonguyenhao/gretutor-starter/Views/Contact/Index.cshtml]

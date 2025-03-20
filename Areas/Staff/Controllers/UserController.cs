@@ -110,59 +110,98 @@ namespace GreTutor.Areas.Staff.Controllers
             TempData["StatusMessage"] = $"Roles updated for user: {user.UserName}";
             return RedirectToAction("Index");
         }
-        // [HttpGet]
-        // public async Task<IActionResult> DeletePersonalData(string id)
-        // {
-        //     if (string.IsNullOrEmpty(id))
-        //     {
-        //         return BadRequest("User ID is missing.");
-        //     }
 
-        //     var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-        //     if (user == null)
-        //     {
-        //         return NotFound($"User with ID {id} not found.");
-        //     }
+        [HttpGet]
+        public async Task<IActionResult> ConfirmDelete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest("User ID is missing.");
+            }
 
-        //     var model = new DeletePersonalDataModel
-        //     {
-        //         UserId = user.Id, // ✅ Lưu ID user đúng
-        //         RequirePassword = await _userManager.HasPasswordAsync(user)
-        //     };
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound($"User with ID {id} not found.");
+            }
 
-        //     return View(model);
-        // }
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
 
-        // [HttpPost]
-        // public async Task<IActionResult> DeletePersonalData(DeletePersonalDataModel model)
-        // {
-        //     var user = await _userManager.GetUserAsync(User);
-        //     if (user == null)
-        //     {
-        //         return NotFound("User not found.");
-        //     }
+            var model = new DeletePersonalDataModel
+            {
+                UserId = user.Id,
+                RequirePassword = await _userManager.HasPasswordAsync(currentUser), // Kiểm tra Staff có mật khẩu không
+                Input = new DeletePersonalDataModel.InputModel()
+            };
 
-        //     if (model.RequirePassword)
-        //     {
-        //         if (!await _userManager.CheckPasswordAsync(user, model.Input.Password))
-        //         {
-        //             ModelState.AddModelError(string.Empty, "Incorrect password.");
-        //             return View(model);
-        //         }
-        //     }
+            return View(model);
+        }
 
-        //     var result = await _userManager.DeleteAsync(user);
-        //     if (!result.Succeeded)
-        //     {
-        //         ModelState.AddModelError(string.Empty, "Failed to delete account.");
-        //         return View(model);
-        //     }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmDelete(DeletePersonalDataModel model)
+        {
+            if (string.IsNullOrEmpty(model.UserId))
+            {
+                return BadRequest("User ID is required.");
+            }
 
-        //     await _signInManager.SignOutAsync();
-        //     _logger.LogInformation("User {UserId} deleted their account.", user.Id);
+            var userToDelete = await _userManager.FindByIdAsync(model.UserId);
+            if (userToDelete == null)
+            {
+                return NotFound("User not found.");
+            }
 
-        //     return RedirectToAction("Index", "Home");
-        // }
+            var currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser == null)
+            {
+                return Unauthorized();
+            }
+
+            // 🚨 Luôn kiểm tra mật khẩu trước khi xóa tài khoản
+            bool requirePassword = await _userManager.HasPasswordAsync(currentUser);
+
+            if (requirePassword)
+            {
+                if (model.Input == null)
+                {
+                    model.Input = new DeletePersonalDataModel.InputModel(); // 🔥 Fix lỗi null
+                }
+
+                if (string.IsNullOrEmpty(model.Input.Password) ||
+                    !await _userManager.CheckPasswordAsync(currentUser, model.Input.Password))
+                {
+                    ModelState.AddModelError(string.Empty, "Incorrect password. Please try again.");
+
+                    model.RequirePassword = true; // 🔥 Đảm bảo form yêu cầu nhập lại mật khẩu
+                    return View(model);
+                }
+            }
+
+            // Nếu xác thực đúng, tiến hành xóa
+            var result = await _userManager.DeleteAsync(userToDelete);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Failed to delete account.");
+                return View(model);
+            }
+
+            _logger.LogInformation("Staff {StaffId} deleted user {UserId}.", currentUser.Id, userToDelete.Id);
+
+            // Nếu Staff tự xóa chính mình, đăng xuất và về trang chủ
+            if (currentUser.Id == userToDelete.Id)
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

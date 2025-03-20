@@ -5,9 +5,9 @@ namespace GreTutor.Models.ViewModels
 {
     public class UserViewModel
     {
-        public string Id { get; set; } // ID của User (IdentityUser.Id)
-        public string UserName { get; set; } // Tên tài khoản
-        public string Email { get; set; } // Gmail (Email)
-        public string RoleNames { get; set; } // Danh sách Role của User (chuỗi phân cách bằng dấu phẩy nếu nhiều role)
+        public string Id { get; set; } 
+        public string UserName { get; set; } 
+        public string Email { get; set; } 
+        public string RoleNames { get; set; } 
     }
 }

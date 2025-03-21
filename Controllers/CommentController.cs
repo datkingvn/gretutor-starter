@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using GreTutor.Models;
+using GreTutor.Models.Entities;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using GreTutor.Data;
-using Microsoft.AspNetCore.Authorization;
-using GreTutor.Models.Entities;
+using GreTutor.DbContext;
 
 namespace GreTutor.Controllers
 {
-    [Authorize]
     public class CommentController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -48,7 +45,7 @@ namespace GreTutor.Controllers
                 return Unauthorized();
             }
 
-            var comment = new Comment
+            var comment = new BlogComment
             {
                 Content = content,
                 Created = DateTime.Now,
@@ -98,7 +95,7 @@ namespace GreTutor.Controllers
             var currentUserId = _userManager.GetUserId(User);
 
             // Kiểm tra quyền chỉnh sửa: chỉ cho phép người tạo hoặc admin chỉnh sửa
-            if (comment.AuthorId != currentUserId && !User.IsInRole("Staff"))
+            if (comment.AuthorId != currentUserId && !User.IsInRole("Admin"))
             {
                 return Forbid(); // Trả về lỗi 403 nếu không có quyền
             }
@@ -112,5 +109,8 @@ namespace GreTutor.Controllers
             // Chuyển hướng về trang chi tiết bài viết chứa bình luận
             return RedirectToAction("Details", "Blog", new { id = comment.BlogId });
         }
+
+
+
     }
 }

@@ -5238,59 +5238,5 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\scss\_widget.scss'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\51a996ec-6611-4c12-98c9-9cedea2c91bd_Ảnh màn hình 2025-03-17 lúc 12.41.15.png'))">
-      <SourceType>Package</SourceType>
-      <SourceId>GreTutor</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GreTutor</BasePath>
-      <RelativePath>uploads/51a996ec-6611-4c12-98c9-9cedea2c91bd_Ảnh màn hình 2025-03-17 lúc 12.41.15.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ciznz7akgc</Fingerprint>
-      <Integrity>hDLAUIwaoEoo/DF+fZLzNY4XYOU0+NOy+Dlz4u8TJMc=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\51a996ec-6611-4c12-98c9-9cedea2c91bd_Ảnh màn hình 2025-03-17 lúc 12.41.15.png'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png'))">
-      <SourceType>Package</SourceType>
-      <SourceId>GreTutor</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GreTutor</BasePath>
-      <RelativePath>uploads/748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qrb9na88wv</Fingerprint>
-      <Integrity>Kv3a4DF9B12bs2mm62QgWndcd5qt4sXdt3k1VL58Ijk=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\748322d9-2677-4d01-b0ca-4759048f663c_Ảnh màn hình 2025-03-11 lúc 17.26.32.png'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png'))">
-      <SourceType>Package</SourceType>
-      <SourceId>GreTutor</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/GreTutor</BasePath>
-      <RelativePath>uploads/c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>joy0eb7fer</Fingerprint>
-      <Integrity>k7kl0/LB8MsBT4mddhyuoTsU6xTqjeZ1AISvugFR4zE=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\c1be8907-0754-4271-8de2-55b9fbe902ae_Ảnh màn hình 2025-03-11 lúc 17.21.21.png'))</OriginalItemSpec>
-    </StaticWebAsset>
   </ItemGroup>
 </Project>

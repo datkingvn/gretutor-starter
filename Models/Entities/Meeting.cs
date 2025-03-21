@@ -1,42 +1,52 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GreTutor.Models.Enums;
 
-namespace GreTutor.Models.Entities
+namespace GreTutor.Models.Entities;
+
+/// <summary>
+/// Meeting Information
+/// </summary>
+public class Meeting
 {
-    public class Meeting
-    {
-        [Key]
-        public int Id { get; set; }
+    /// <summary>
+    /// Meeting Id
+    /// </summary>
+    [Key]
+    public int MeetingId { get; set; }
 
-        [Required]
-        public int ClassId { get; set; }
-        [ForeignKey("ClassId")]
-        public virtual Class? Class { get; set; }
+    /// <summary>
+    /// Tutor ID
+    /// </summary>
+    [Required]
+    public string? TutorId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(255)")]
-        public string Title { get; set; } // Tiêu đề cuộc họp
+    /// <summary>
+    /// Meeting Time
+    /// </summary>
+    [Required]
+    public DateTime? DateTime { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
-        public DateTime StartTime { get; set; } // Chỉ hiển thị ngày, giờ và phút
+    /// <summary>
+    /// Meeting Type
+    /// </summary>
+    [Required]
+    public MeetingType MeetingType { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(255)")]
-        public string Location { get; set; } // Địa điểm hoặc "Online"
+    /// <summary>
+    /// Meeting Note
+    /// </summary>
+    /// <value></value>
+    [Column(TypeName = "TEXT")] 
+    public string? Note { get; set; }
 
-        [Column(TypeName = "nvarchar(512)")]
-        public string? MeetingLink { get; set; } // Link họp online (Google Meet, Zoom)
+    /// <summary>
+    /// Meeting Student List Navigation Property
+    /// </summary>
+    public virtual IEnumerable<ApplicationUser>? Students { get; set; }
 
-        [Column(TypeName = "nvarchar(512)")]
-        public string? RecordingLink { get; set; } // 🔴 Link recording Google Meet (Tự động cập nhật)
-
-        [Column(TypeName = "nvarchar(1000)")]
-        public string? Note { get; set; } // 🔹 Ghi chú cuộc họp (nếu có)
-
-        [DataType(DataType.DateTime)]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow; // 🔹 Ngày tạo
-    }
+    /// <summary>
+    /// Meeting Tutor Navigation Property
+    /// </summary>
+    public virtual ApplicationUser? Tutor { get; set; }
 }

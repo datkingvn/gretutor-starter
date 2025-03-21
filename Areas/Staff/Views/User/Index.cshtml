@@ -12,10 +12,9 @@
 <div class="container" style="max-width: 900px;">
     <table class="table table-bordered table-sm">
         <thead class="thead-dark">
-            <tr>
+           <tr>
                 <th class="text-center fs-4">User Name</th>
                 <th class="text-center fs-4">Role</th>
-                <th class="text-center fs-4">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +25,7 @@
                     <td class="text-center">
                         @if (string.IsNullOrEmpty(user.RoleNames))
                         {
-                            <a class="btn btn-success " asp-area="Staff" asp-controller="User" asp-action="AddRole"
-                                asp-route-id="@user.Id">
+                            <a class="btn btn-success " asp-area="Staff" asp-controller="User" asp-action="AddRole" asp-route-id="@user.Id">
                                 Add Role
                             </a>
                         }
@@ -37,12 +35,6 @@
                                 @user.RoleNames
                             </a>
                         }
-                    </td>
-                    <td class="text-center">
-                        <a class="btn btn-danger" asp-area="Staff" asp-controller="User" asp-action="ConfirmDelete"
-                            asp-route-id="@user.Id">
-                            Delete
-                        </a>
                     </td>
                 </tr>
             }

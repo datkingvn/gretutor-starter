@@ -1,35 +1,56 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
-namespace GreTutor.Models.Entities
+
+namespace GreTutor.Models.Entities;
+
+/// <summary>
+/// Meeting Document
+/// </summary>
+public class Document
 {
-    public class Document
-    {
-        [Key]
-        public int Id { get; set; }
+    /// <summary>
+    /// Document Id
+    /// </summary>
+    [Key]
+    public int DocumentId { get; set; }
 
-        [Required]
-        public int ClassId { get; set; }
-        [ForeignKey("ClassId")]
-        public virtual Class Class { get; set; }
+    /// <summary>
+    /// Uploader Id (Student or Tutor)
+    /// </summary>
+    public string? UploaderId { get; set; }
 
-        [Required]
-        public string UploadedById { get; set; }
-        [ForeignKey("UploadedById")]
-        public virtual IdentityUser UploadedBy { get; set; }
+    /// <summary>
+    /// Classroom Id
+    /// </summary>
+    public int? ClassroomId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(255)")]
-        public string FileName { get; set; }
+    /// <summary>
+    /// Document Meeting Id
+    /// </summary>
+    public int? MeetingId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(max)")]
-        public string FilePath { get; set; } // Đường dẫn file
+    /// <summary>
+    /// Document File Name
+    /// </summary>
+    [Required]
+    public string? FileName { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime UploadedAt { get; set; } = DateTime.UtcNow;
-        public virtual ICollection<CommentDocument> CommentDocuments { get; set; } = new List<CommentDocument>();
-    }
+    /// <summary>
+    /// Upload Date
+    /// </summary>
+    public DateTime? UploadDate { get; set; } = DateTime.Today;
 
+    /// <summary>
+    /// Uploader Identity User Navigation Property
+    /// </summary>
+    public ApplicationUser? Uploader { get; set; }
+
+    /// <summary>
+    /// Classroom Navigation Property
+    /// </summary>
+    public Classroom? Classroom  { get; set; }
+
+    /// <summary>
+    /// Meeting Navigation Property
+    /// </summary>
+    public Meeting? Meeting  { get; set; }
 }

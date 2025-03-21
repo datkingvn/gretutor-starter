@@ -4,33 +4,64 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 using GreTutor.Models.Enums;
-namespace GreTutor.Models.Entities
+
+namespace GreTutor.Models.Entities;
+
+/// <summary>
+/// Blog Post Entity
+/// </summary>
+public class BlogPost
 {
-    public class BlogPost
-    {
-        [Key]
-        public int BlogId { get; set; }
+    /// <summary>
+    /// Blog ID
+    /// </summary>
+    /// <value></value>
+    [Key]
+    public int BlogId { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(255)")]
-        public string Title { get; set; }
+    /// <summary>
+    /// Blog Title
+    /// </summary>
+    /// <value></value>
+    [Required]
+    [Column(TypeName = "nvarchar(255)")]
+    public string? Title { get; set; }
 
-        [Required]
-        [Column(TypeName = "nvarchar(max)")] 
-        public string Content { get; set; }
+    /// <summary>
+    /// Blog Content
+    /// </summary>
+    /// <value></value>
+    [Required]
+    [Column(TypeName = "TEXT")]
+    public string? Content { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [Required]
-        public DateTime Created { get; set; } = DateTime.Now;
-        public string AuthorId { get; set; }
-        
-        [Display(Name = "Status")]
-        public BlogStatus Status { get; set; }
+    /// <summary>
+    /// Blog Created Time
+    /// </summary>
+    /// <value></value>
+    [Required]
+    [Column(TypeName = "datetime")]
+    public DateTime Created { get; set; } = DateTime.Now;
 
-        public virtual IdentityUser? User { get; set; }
-        public virtual List<Comment> Comments { get; set; } = new List<Comment>();
+    /// <summary>
+    /// Blog Identity Author Id
+    /// </summary>
+    public string? AuthorId { get; set; }
 
+    /// <summary>
+    /// Blog Status
+    /// </summary>
+    [Display(Name = "Status")]
+    public BlogStatus Status { get; set; }
 
-    }
+    /// <summary>
+    ///  Identity User Navigation Property
+    /// </summary>
+    [ForeignKey("AuthorId")]
+    public virtual ApplicationUser? User { get; set; }
 
+    /// <summary>
+    /// Blog Comments Navigation Property 
+    /// </summary>
+    public virtual IEnumerable<BlogComment>? Comments { get; set; }
 }

@@ -1,0 +1,60 @@
+@model IEnumerable<GreTutor.Models.Entities.BlogPost>
+@{
+    ViewData["Title"] = "Manage Blog List";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<h2>Manage Blog</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Created</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var blog in Model)
+    {
+        <tr>
+            <td>@blog.BlogId</td>
+            <td>@blog.Title</td>
+            <td>@blog.Created.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@(blog.User?.UserName ?? "Unknown")</td>
+            <td>@blog.Status</td>
+            <td>
+                @if (blog.Status == GreTutor.Models.Enums.BlogStatus.Pending)
+                {
+                    <form asp-area="Staff" asp-controller="ManageBlogList" asp-action="Approve" method="post" style="display:inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@blog.BlogId" />
+                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+                    <form asp-area="Staff" asp-controller="ManageBlogList" asp-action="Reject" method="post" style="display:inline; margin-left:5px;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@blog.BlogId" />
+                        <button type="submit" class="btn btn-warning btn-sm">Reject</button>
+                    </form>
+                }
+                else
+                {
+                    <span>@blog.Status</span>
+                }
+                <form asp-area="Staff" asp-controller="ManageBlogList" asp-action="Delete" method="post" style="display:inline; margin-left:5px;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@blog.BlogId" />
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

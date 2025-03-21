@@ -1,95 +1,92 @@
 using Microsoft.EntityFrameworkCore;
-using GreTutor.Data;
-using GreTutor.Models.ViewModels;
+using GreTutor.DbContext;
+using GreTutor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using GreTutor.Services;
-using Microsoft.AspNetCore.SignalR;
-using GreTutor.Hubs;
-
 using Microsoft.AspNetCore.Authentication.Cookies;
-
-
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure; // Thêm namespace cho UseMySql
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// Đăng ký DbContext với connection string
 
+// Đăng ký DbContext với MySQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+    ));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-
-// Truy cập IdentityOptions
-builder.Services.Configure<IdentityOptions>(options =>
+// Cấu hình Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
-    // Thiết lập về Password
-    options.Password.RequireDigit = false; // Không bắt phải có số
-    options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
-    options.Password.RequireNonAlphanumeric = false; // Không bắt ký tự đặc biệt
-    options.Password.RequireUppercase = false; // Không bắt buộc chữ in
+    // Thiết lập Password
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 3;
-    options.Password.RequiredUniqueChars = 1; // Số ký tự riêng biệt
+    options.Password.RequiredUniqueChars = 1;
 
-    // Cấu hình Lockout - khóa user
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
-    options.Lockout.MaxFailedAccessAttempts = 5; // Thất bại 5 lần thì khóa
+    // Cấu hình Lockout
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
 
-    // Cấu hình về User.
-    options.User.AllowedUserNameCharacters = // các ký tự đặt tên user
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = true;  // Email là duy nhất
+    // Cấu hình User
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
 
-    // Cấu hình đăng nhập.
-    options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
-    options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+    // Cấu hình SignIn
+    options.SignIn.RequireConfirmedEmail = true;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
-});
-
+// Cấu hình cookie authentication
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/Login"; 
-    options.LogoutPath = "/Logout"; 
-    options.AccessDeniedPath = "/AccessDenied"; 
+    options.LoginPath = "/Account/Login"; // Đường dẫn đăng nhập
+    options.LogoutPath = "/Account/Logout"; // Đường dẫn đăng xuất
+    options.AccessDeniedPath = "/Account/AccessDenied"; // Đường dẫn khi bị từ chối truy cập
 });
 
+// Cấu hình gửi email
 var mailSettings = builder.Configuration.GetSection("MailSettings");
 builder.Services.Configure<MailSettings>(mailSettings);
 builder.Services.AddTransient<IEmailSender, SendMailService>();
 
+// Thêm Razor Pages
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<ZoomService>();
+// Cấu hình Authorization Policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Allow", policy => policy.RequireAuthenticatedUser());
+    options.AddPolicy("ShowStaffMenu", policy => policy.RequireRole("Staff"));
+});
 
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddSignalR();
 var app = builder.Build();
 
-app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
-
-// Configure the HTTP request pipeline.
+// Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
+// Đảm bảo Authentication trước Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
-
+// Định nghĩa routes
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
@@ -100,6 +97,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
+app.MapRazorPages();
+
+// Khởi tạo roles
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -107,15 +107,23 @@ using (var scope = app.Services.CreateScope())
 
     foreach (var roleName in roleNames)
     {
-        var roleExists = await roleManager.RoleExistsAsync(roleName);
-        if (!roleExists)
+        if (!await roleManager.RoleExistsAsync(roleName))
         {
             await roleManager.CreateAsync(new IdentityRole(roleName));
         }
     }
-}
 
-app.MapHub<ChatHub>("/chatHub");
-app.MapRazorPages();
+    // (Tùy chọn) Kiểm tra kết nối MySQL
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    try
+    {
+        await dbContext.Database.EnsureCreatedAsync();
+        Console.WriteLine("Kết nối MySQL thành công!");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Lỗi kết nối MySQL: {ex.Message}");
+    }
+}
 
 app.Run();

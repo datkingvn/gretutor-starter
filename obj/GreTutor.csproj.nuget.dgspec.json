@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Container\\Project_Topup\\Gre_Etutor\\gretutor-starter\\GreTutor.csproj": {}
+    "D:\\Container\\Great_Ap\\gretutor-starter\\GreTutor.csproj": {}
   },
   "projects": {
-    "D:\\Container\\Project_Topup\\Gre_Etutor\\gretutor-starter\\GreTutor.csproj": {
+    "D:\\Container\\Great_Ap\\gretutor-starter\\GreTutor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Container\\Project_Topup\\Gre_Etutor\\gretutor-starter\\GreTutor.csproj",
+        "projectUniqueName": "D:\\Container\\Great_Ap\\gretutor-starter\\GreTutor.csproj",
         "projectName": "GreTutor",
-        "projectPath": "D:\\Container\\Project_Topup\\Gre_Etutor\\gretutor-starter\\GreTutor.csproj",
+        "projectPath": "D:\\Container\\Great_Ap\\gretutor-starter\\GreTutor.csproj",
         "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\Container\\Project_Topup\\Gre_Etutor\\gretutor-starter\\obj\\",
+        "outputPath": "D:\\Container\\Great_Ap\\gretutor-starter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,10 +54,6 @@
               "target": "Package",
               "version": "[4.10.0, )"
             },
-            "Microsoft.AspNetCore.Authentication.Cookies": {
-              "target": "Package",
-              "version": "[2.3.0, )"
-            },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
               "version": "[7.0.16, )"
@@ -90,17 +86,9 @@
               "target": "Package",
               "version": "[7.0.16, )"
             },
-            "Microsoft.AspNetCore.SignalR": {
-              "target": "Package",
-              "version": "[1.2.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.16, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.16, )"
             },
@@ -118,13 +106,13 @@
               "target": "Package",
               "version": "[4.10.0, )"
             },
-            "System.IdentityModel.Tokens.Jwt": {
+            "MySqlConnector": {
               "target": "Package",
-              "version": "[7.6.1, )"
+              "version": "[2.4.0, )"
             },
-            "ZoomNet": {
+            "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
-              "version": "[0.89.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -146,7 +134,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

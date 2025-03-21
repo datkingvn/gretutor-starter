@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreTutor.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250317170412_AddCommentDocumentModel")]
-    partial class AddCommentDocumentModel
+    [Migration("20250321115743_TenMigration")]
+    partial class TenMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

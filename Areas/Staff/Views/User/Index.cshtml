@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "List Members";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="section section-padding">
+    <div class="container">
+        <h2 class="mt-4 mb-4 text-center fw-bold">List Members</h2>
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th class="text-center py-3 fs-5">User Name</th>
+                                <th class="text-center py-3 fs-5">Role</th>
+                                <th class="text-center py-3 fs-5">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td class="text-center align-middle fs-5 py-3">@user.UserName</td>
+                                    <td class="text-center py-3">
+                                        @if (string.IsNullOrEmpty(user.RoleNames))
+                                        {
+                                            <a class="btn btn-success rounded-pill px-3" asp-area="Staff" asp-controller="User" asp-action="AddRole"
+                                                asp-route-id="@user.Id">
+                                                <i class="fas fa-plus-circle me-1"></i> Add Role
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-outline-primary rounded-pill px-3" asp-area="Staff" asp-controller="User" asp-action="AddRole" asp-route-id="@user.Id">
+                                                @user.RoleNames
+                                            </a>
+                                        }
+                                    </td>
+                                    <td class="text-center py-3">
+                                        <a class="btn btn-danger rounded-pill px-3" asp-area="Staff" asp-controller="User" asp-action="ConfirmDelete"
+                                            asp-route-id="@user.Id">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

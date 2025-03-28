@@ -1,0 +1,149 @@
+﻿@model GreTutor.Areas.Staff.Models.AddRoleModel
+@{
+    ViewData["Title"] = "Set Role";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="section section-padding">
+  <div class="container">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+          <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+            <div class="card-header bg-primary p-4 text-white">
+              <div class="d-flex align-items-center">
+                <div class="me-3">
+                  <i class="fas fa-user-tag"></i>
+                </div>
+                <div>
+                  <h4 class="mb-1 fw-bold">Assign Role</h4>
+                  <p class="mb-0 opacity-75">@Model.User?.UserName</p>
+                </div>
+              </div>
+            </div>
+            <!-- Clean, spacious body -->
+            <div class="card-body p-4 p-lg-5">
+              <form id="set-role-form" method="post" asp-action="AddRole" asp-controller="User">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-dismissible fade show rounded-3" role="alert">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="mb-4">
+                  <label asp-for="RoleNames" class="form-label fw-semibold mb-3">
+                    <i class="fas fa-user-tag me-2 text-primary"></i>Available Roles </label>
+                  <div class="select-roles-container"> @Html.ListBoxFor(m => m.RoleNames, Model.AllRoles, new { id = "id-select-roles", @class = "form-select", size = "6", multiple = "multiple" }) </div>
+                  <div class="form-text mt-2">
+                    <i class="fas fa-info-circle me-1 text-primary"></i> Hold Ctrl/Cmd to select multiple roles
+                  </div>
+                  <span asp-validation-for="RoleNames" class="text-danger small"></span>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                  <a class="btn btn-outline-secondary px-4 py-2 me-md-2" asp-action="Index" asp-controller="User">
+                    </i>Cancel </a>
+                  <button type="submit" class="btn btn-primary btn-sm px-3 py-1"> Save Changes </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <style>
+        .select-roles-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        #id-select-roles {
+            border: none;
+            padding: 10px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        #id-select-roles option {
+            padding: 12px 15px;
+            margin: 2px 0;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        #id-select-roles option:hover {
+            background-color: #e9ecef;
+        }
+
+        #id-select-roles option:checked {
+            background-color: rgba(13, 110, 253, 0.1) !important;
+            color: #0d6efd;
+            border-left: 3px solid #0d6efd;
+        }
+
+        /* Button styles */
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #0d6efd, #0a58ca);
+            border: none;
+        }
+
+        .btn-outline-secondary {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #6c757d;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #e9ecef;
+            color: #0d6efd;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-text {
+            font-size: 0.875rem;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("#id-select-roles option").each(function() {
+                $(this).text(" " + $(this).text());
+            });
+
+            $("#id-select-roles").on("change", function() {
+                $(this).css("transform", "scale(1.02)");
+                setTimeout(function() {
+                    $("#id-select-roles").css("transform", "scale(1)");
+                }, 200);
+            });
+        });
+    </script>
+}

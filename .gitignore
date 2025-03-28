@@ -1,0 +1,25 @@
+# Rider and Visual Studio settings
+.vs/
+.idea/
+
+# Build and output
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# logs
+logs/
+logs/*.log
+
+#nuget packages
+packages/
+*.nupkg
+project.lock.json
+
+# Debug and runtime files
+*.pdb
+*.lock
+*.cache

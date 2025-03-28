@@ -1,0 +1,73 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Personal Data";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="section">
+  <div class="section-padding-02 mt-n10 mb-10">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow border-0 rounded-3 overflow-hidden">
+            <div class="row g-0">
+              <!-- Sidebar Navigation -->
+              <div class="col-md-4 bg-primary text-white">
+                <div class="p-4 h-100 d-flex flex-column">
+                  <div class="nav flex-column">
+                    <partial name="_ManageNav" />
+                  </div>
+                  <div class="mt-auto text-white-50">
+                    <small>Last login: Today</small>
+                  </div>
+                </div>
+              </div>
+              <!-- Main Content -->
+              <div class="col-md-8">
+                <div class="card-body p-4 p-lg-5">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h3 class="fw-bold">@ViewData["Title"]</h3>
+                    <span class="badge bg-success">Active</span>
+                  </div>
+
+                  <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
+                  <p class="text-danger fw-bold">
+                    Deleting this data will permanently remove your account, and this cannot be recovered.
+                  </p>
+
+                  <!-- Download Button with Icon -->
+                  <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                    <div class="d-grid">
+                      <button class="w-50 btn btn-sm btn-primary mb-3" type="submit">
+                        <i class="bi bi-download me-2"></i> Download
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- Delete Button with Icon -->
+                  <div class="d-grid">
+                    <a id="delete" asp-page="DeletePersonalData" class="w-50 btn btn-sm btn-danger">
+                      <i class="bi bi-trash me-2"></i>Yes, I want to delete
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <!-- Add Bootstrap Icons if not already included -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+}

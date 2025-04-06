@@ -85,36 +85,39 @@
 </head>
 
 <body>
+    <div class="section">
+            <div class="section-padding-02 mt-n10">
     <div class="form-container">
         <h4 class="form-title">Edit Blog Post</h4>
         <hr />
         <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BlogId" />
-            
-            <div class="form-group mb-3">
+
+            <div class="single-form">
                 <label asp-for="Title" class="control-label">Title</label>
-                <input asp-for="Title" class="form-control" required />
+                <input asp-for="Title" class="form-control bg-light" required />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
 
-            <div class="form-group mb-3">
+            <div class="single-form">
                 <label asp-for="Content" class="control-label">Content</label>
-                <textarea asp-for="Content" class="form-control" rows="4" required></textarea>
+                <textarea asp-for="Content" class="form-control bg-light" rows="4" required></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
 
-            <div class="form-group mb-3">
+            <div class="single-form">
                 <label class="control-label">Created</label>
                 <p class="created-info">@Model.Created.ToString("HH:mm dd/MM/yyyy")</p>
                 <input type="hidden" asp-for="Created" />
             </div>
 
             <div class="btn-container mt-3">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                <a href="~/Blog/HomeBlog" class="btn btn-secondary"><i class="fas fa-backward"></i> Back to List</a>
             </div>
         </form>
     </div>
+            </div>
 </body>
 </html>

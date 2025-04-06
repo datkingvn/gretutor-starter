@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GreTutor.DbContext;
-using GreTutor.Models.Entities;
+using GreTutor.Data;
+using GreTutor.Models;
 using GreTutor.Models.Enums;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using GreTutor.Models.Entities;
 
 
 
 namespace GreTutor.Controllers
 {
-    // [Authorize]
-    // [Authorize(Roles = "Admin,User")]
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,17 +29,6 @@ namespace GreTutor.Controllers
             _context = context;
             _userManager = userManager;
         }
-
-
-        // GET: Blog
-        // public async Task<IActionResult> Index()
-        // {
-        //     var blogPosts = await _context.BlogPosts
-        //         .Include(b => b.User) // 🔗 Lấy thông tin User từ bảng Users
-        //         .ToListAsync();
-
-        //     return blogPosts != null ? View(blogPosts) : Problem("Entity set 'ApplicationDbContext.BlogPosts' is null.");
-        // }
 
         public async Task<IActionResult> Index()
         {
@@ -57,19 +46,22 @@ namespace GreTutor.Controllers
         {
             var approvedBlogs = await _context.BlogPosts
                 .Where(b => b.Status == BlogStatus.Approved)
-                .Include(b => b.User) // Lấy thông tin của tác giả nếu cần hiển thị
-                .OrderByDescending(b => b.Created) // Sắp xếp blog mới nhất ở trên đầu
+                .Include(b => b.User) // Lấy thông tin tác giả
+                .OrderByDescending(b => b.Created)
                 .ToListAsync();
+
+            ViewBag.CurrentUser = User.Identity.Name; // Lưu user đang đăng nhập
 
             return View(approvedBlogs);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var blogPost = await _context.BlogPosts
                 .Include(b => b.Comments)
-                    .ThenInclude(c => c.User!) // Nếu User có thể null, dùng `c.User!`
+                .ThenInclude(c => c.User!) 
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
             if (blogPost == null)
@@ -80,7 +72,6 @@ namespace GreTutor.Controllers
             return View(blogPost);
         }
 
-        // GET: Blog/Create
         public IActionResult Create()
         {
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -147,7 +138,6 @@ namespace GreTutor.Controllers
             }
         }
 
-        // GET: Blog/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.BlogPosts == null)
@@ -163,9 +153,6 @@ namespace GreTutor.Controllers
             return View(blogPost);
         }
 
-        // POST: Blog/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Content,Created")] BlogPost blogPost)

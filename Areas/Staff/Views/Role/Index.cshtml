@@ -1,45 +1,41 @@
 ﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
-@{
-    ViewData["Title"] = "List Role";
-    Layout = "_Layout";
-}
+@{ ViewData["Title"] = "List Role"; Layout = "_Layout"; }
 
-<!-- Page Banner Start -->
 @await Html.PartialAsync("_PageBannerStart")
-<!-- Page Banner End -->
+<div class="section section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mb-4">
+                <h2 class="display-6 fw-bold text-primary">@ViewData["Title"]</h2>
+            </div>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center mb-4">
-            <h2 class="display-6 fw-bold text-primary">@ViewData["Title"]</h2>
-        </div>
-
-        <div class="col-8">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <table class="table table-bordered table-hover text-center">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Role</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var role in new List<string> { "Tutor", "Staff", "Student" })
-                            {
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card shadow-lg rounded-3 border-light">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover text-center">
+                            <thead class="table-dark">
                                 <tr>
-                                    <td>@role</td>
+                                    <th>Role</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in new List<string> { "Tutor", "Staff", "Student" })
+                                {
+                                    <tr>
+                                        <td>@role</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 text-center mt-5 mb-5">
-        <a class="btn btn-secondary btn-lg" asp-area="Staff" asp-controller="User" asp-action="Index">
-            Manage Member
-        </a>
+            <div class="col-12 text-center mt-5 mb-5">
+                <a class="btn btn-primary btn-lg px-4 py-2 shadow-sm" asp-area="Staff" asp-controller="User" asp-action="Index">
+                    <i class="fas fa-tasks"></i> Manage Member
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -47,10 +43,21 @@
 <style>
     .table th, .table td {
         vertical-align: middle;
+        padding: 15px;
     }
+
     .table {
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
         margin: auto;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
     }
 </style>

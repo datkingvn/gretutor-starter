@@ -1,0 +1,48 @@
+@model GreTutor.Models.Entities.Class
+
+@{
+    ViewData["Title"] = "Chỉnh sửa lớp học";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="section section-padding">
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0 text-white" style="font-size: 20px"><i class="fas fa-edit"></i> Edit Class Name</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="single-form mb-3">
+                            @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                        </div>
+
+                        <!-- Nút lưu thay đổi -->
+                        <div class="card-footer text-center">
+                            <div class="d-flex justify-content-center">
+                                <!-- Nút "Lưu thay đổi" -->
+                                <button type="submit" class="btn btn-primary me-2">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+
+                                <!-- Nút "Quay lại danh sách" -->
+                                <a href="@Url.Action("Index", "Class", new { area = "Staff" })" class="btn btn-secondary">
+                                    Back to list
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

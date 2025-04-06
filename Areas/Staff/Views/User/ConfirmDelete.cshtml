@@ -1,0 +1,50 @@
+﻿@model GreTutor.Areas.Staff.Models.DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Confirm Delete";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg border-danger" style="max-width: 500px; width: 100%;">
+        <div class="card-header bg-danger text-white text-center">
+            <h3 class="mb-0"></i> Confirm Delete</h3>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-warning text-center" role="alert">
+                <p><strong>This will permanently delete the account and cannot be recovered.</strong></p>
+            </div>
+
+            <form id="delete-user" asp-action="ConfirmDelete" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="UserId" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                @if (Model.RequirePassword)
+                {
+                    <div class="mb-3">
+                        <label asp-for="Input.Password" class="form-label fw-bold">Enter your password to confirm</label>
+                        <input asp-for="Input.Password" class="form-control border-danger" autocomplete="current-password"
+                            placeholder="Enter your password" required />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                }
+
+                <button class="w-100 btn btn-lg btn-danger shadow-sm" type="submit">
+                    <i class="fas fa-trash-alt"></i> Delete Account
+                </button>
+                <a asp-action="Index" class="btn btn-secondary w-100 mt-2 shadow-sm">
+                    </i> Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

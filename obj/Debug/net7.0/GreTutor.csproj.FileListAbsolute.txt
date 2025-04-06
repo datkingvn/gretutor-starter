@@ -265,3 +265,15 @@ D:\Container\Great_Ap\gretutor-starter\obj\Debug\net7.0\GreTutor.pdb
 D:\Container\Great_Ap\gretutor-starter\obj\Debug\net7.0\GreTutor.genruntimeconfig.cache
 D:\Container\Great_Ap\gretutor-starter\obj\Debug\net7.0\ref\GreTutor.dll
 D:\Container\Great_Ap\gretutor-starter\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.csproj.AssemblyReference.cache
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.GeneratedMSBuildEditorConfig.editorconfig
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.AssemblyInfoInputs.cache
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.AssemblyInfo.cs
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.csproj.CoreCompileInputs.cache
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.MvcApplicationPartsAssemblyInfo.cs
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.MvcApplicationPartsAssemblyInfo.cache
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.RazorAssemblyInfo.cache
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.RazorAssemblyInfo.cs
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.dll
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\refint\GreTutor.dll
+D:\Container\Project_Topup\Gre_Etutor\Gre_Etutor\gretutor-starter\obj\Debug\net7.0\GreTutor.pdb

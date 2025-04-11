@@ -45,7 +45,7 @@ namespace GreTutor.Controllers
             var meeting = new Meeting
             {
                 ClassId = classId,
-                Class = classEntity, 
+                Class = classEntity,
                 StartTime = DateTime.Now
             };
 
@@ -210,7 +210,6 @@ namespace GreTutor.Controllers
                 <li><strong>Title:</strong> {meeting.Title}</li>
                 <li><strong>Original Time:</strong> {meeting.StartTime}</li>
                 <li><strong>Location:</strong> {meeting.Location}</li>
-                <li><strong>Meeting Link:</strong> {meeting.MeetingLink}</li>
                 <li><strong>Notes:</strong> {meeting.Note}</li>
             </ul>
             <p>Sorry for the inconvenience.</p>

@@ -1,8 +1,8 @@
 @model List<GreTutor.Models.Entities.ChatMessage>
 @{
-ViewData["Title"] = "Chat Box";
-var classId = ViewBag.ClassId;
-var currentUserId = ViewBag.CurrentUserId;
+    ViewData["Title"] = "Chat Box";
+    var classId = ViewBag.ClassId;
+    var currentUserId = ViewBag.CurrentUserId;
 }
 <div class="section section-padding">
     <div class="container">
@@ -25,12 +25,8 @@ var currentUserId = ViewBag.CurrentUserId;
                 </div>
 
                 <div class="message-input-container">
-                    <textarea
-                id="messageInput"
-                placeholder="Type your message..."
-                rows="3"
-                class="message-input"
-            ></textarea>
+                    <textarea id="messageInput" placeholder="Type your message..." rows="3"
+                        class="message-input"></textarea>
                     <div class="message-actions">
                         <button id="cancelBtn" class="btn btn-secondary">Cancel</button>
                         <button id="sendBtn" class="btn btn-primary">Send</button>
@@ -193,6 +189,7 @@ var currentUserId = ViewBag.CurrentUserId;
             console.error('SignalR connection error:', err);
             alert('Unable to connect to chat. Please check your connection.');
         }
+
     }
 
     // Initialize chat when document is ready
@@ -203,6 +200,10 @@ var currentUserId = ViewBag.CurrentUserId;
         window.classroomChat = new ClassroomChat(classId, currentUserId);
     });
 
+    document.getElementById('cancelBtn').addEventListener('click', function () {
+        window.location.href = '@Url.Action("Index", "Classroom")';
+    });
+
 </script>
 
 <style>
@@ -211,7 +212,7 @@ var currentUserId = ViewBag.CurrentUserId;
         margin: 0 auto;
         background-color: #f5f5f5;
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .chat-wrapper {
@@ -265,7 +266,7 @@ var currentUserId = ViewBag.CurrentUserId;
     }
 
     .message-time {
-        color: rgba(0,0,0,0.5);
+        color: rgba(0, 0, 0, 0.5);
     }
 
     .message-input-container {
@@ -294,5 +295,4 @@ var currentUserId = ViewBag.CurrentUserId;
         border-color: red;
         animation: shake 0.5s;
     }
-
 </style>

@@ -19,7 +19,7 @@ namespace GreTutor.Data
         public DbSet<Meeting> Meetings { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
-        public DbSet<CommentDocument> CommentDocuments { get; set; } 
+        public DbSet<CommentDocument> CommentDocuments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

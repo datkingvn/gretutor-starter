@@ -61,7 +61,7 @@ namespace GreTutor.Controllers
         {
             var blogPost = await _context.BlogPosts
                 .Include(b => b.Comments)
-                .ThenInclude(c => c.User!) 
+                .ThenInclude(c => c.User!)
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
             if (blogPost == null)
@@ -256,7 +256,7 @@ namespace GreTutor.Controllers
                 // 🔍 Debug: Log sau khi xóa thành công
                 Console.WriteLine($"==== DEBUG: Đã xóa BlogPost ID: {id} ====");
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("HomeBlog");
             }
             catch (Exception ex)
             {

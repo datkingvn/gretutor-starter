@@ -224,7 +224,7 @@ namespace GreTutor.Controllers
                 TempData["ErrorMessage"] = "Error: " + ex.Message; // Hiển thị lỗi nếu có
             }
 
-            return RedirectToAction("Index", new { classId });
+            return RedirectToAction("People", new { classId });
         }
 
     }

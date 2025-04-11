@@ -26,8 +26,8 @@ namespace GreTutor.Areas.Staff.Controllers
         public async Task<IActionResult> Index()
         {
             return _context.Classes != null ?
-                        View(await _context.Classes.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Classes'  is null.");
+            View(await _context.Classes.ToListAsync()) :
+            Problem("Entity set 'ApplicationDbContext.Classes'  is null.");
         }
 
         [HttpGet]

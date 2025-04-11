@@ -1,0 +1,84 @@
+@model GreTutor.Models.ViewModels.PersonalDashboardViewModel
+
+@{
+    ViewData["Title"] = "My Dashboard";
+    Layout = "_Layout";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<h2 class="mb-4 fw-bold">👤 My Dashboard</h2>
+
+<div class="row g-4">
+    <!-- Blog Posts -->
+    <div class="col-md-4">
+        <div class="card shadow-lg border-0">
+            <div class="card-body d-flex align-items-center mb-3">
+                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                    style="width: 60px; height: 60px;">
+                    <i class="fas fa-blog fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Blog Posts</h6>
+                    <h3 class="mb-0 fw-bold">
+                        @(@Model.PendingBlogPosts + @Model.ApprovedBlogPosts + @Model.RejectedBlogPosts)
+                    </h3>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">
+                    Pending
+                    <span class="fw-bold text-warning">@Model.PendingBlogPosts</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    Approved
+                    <span class="fw-bold text-success">@Model.ApprovedBlogPosts</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    Rejected
+                    <span class="fw-bold text-danger">@Model.RejectedBlogPosts</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Meetings -->
+    <div class="col-md-4">
+        <div class="card shadow-lg border-0">
+            <div class="card-body d-flex align-items-center mb-3">
+                <div class="bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                    style="width: 60px; height: 60px;">
+                    <i class="fas fa-video fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Meetings</h6>
+                    <h3 class="mb-0 fw-bold">@Model.TotalMeetings</h3>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center text-muted small">
+                Total meetings in your classes
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents -->
+    <div class="col-md-4">
+        <div class="card shadow-lg border-0">
+            <div class="card-body d-flex align-items-center mb-3">
+                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                    style="width: 60px; height: 60px;">
+                    <i class="fas fa-file-alt fa-2x"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Documents</h6>
+                    <h3 class="mb-0 fw-bold">@Model.TotalDocuments</h3>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 text-center text-muted small">
+                Documents shared in your classes
+            </div>
+        </div>
+    </div>
+</div>

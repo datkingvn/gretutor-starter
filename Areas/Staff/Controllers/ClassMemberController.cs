@@ -201,7 +201,7 @@ namespace GreTutor.Areas.Staff.Controllers
                 TempData["ErrorMessage"] = "No members added.";
             }
 
-            return RedirectToAction("Index", new { classId });
+            return RedirectToAction("Add", new { classId });
         }
 
         [HttpPost]
@@ -229,7 +229,7 @@ namespace GreTutor.Areas.Staff.Controllers
 
             TempData["SuccessMessage"] = "Member removed successfully!";
 
-            return RedirectToAction("Add", new { classId }); // 🚀 Chuyển về trang Add
+            return RedirectToAction("Index", new { classId }); // 🚀 Chuyển về trang Add
         }
 
     }

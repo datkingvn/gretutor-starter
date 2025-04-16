@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Role List";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">@ViewData["Title"]</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Available Roles</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="grid-search">
+                            <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                                <div class="gridjs-wrapper" style="height: auto;">
+                                    <table role="grid" class="gridjs-table" style="height: auto;">
+                                        <thead class="gridjs-thead">
+                                            <tr class="gridjs-tr">
+                                                <th data-column-id="role" class="gridjs-th">
+                                                    <div class="gridjs-th-content">Role Name</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="gridjs-tbody">
+                                            @foreach (var role in Model)
+                                            {
+                                                <tr class="gridjs-tr">
+                                                    <td data-column-id="role" class="gridjs-td">@role.Name</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="gridjs-temp" class="gridjs-temp"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center m-5">
+            <a href="@Url.Action("Index", "User", new { area = "Staff" })" class="btn btn-secondary">
+                <i class="fas fa-backward"></i> Back to User Management
+            </a>
+        </div>
+    </div>
+</div>

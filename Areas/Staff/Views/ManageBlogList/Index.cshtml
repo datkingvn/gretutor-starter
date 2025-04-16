@@ -1,0 +1,110 @@
+@model IEnumerable<GreTutor.Models.Entities.BlogPost>
+@{
+    ViewData["Title"] = "Manage Blog List";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Manage Blog</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Manage Blog</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <div class="row">
+            <div class="col-xl-12">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">List of Blog Posts</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover align-middle">
+                                <thead class="table-dark text-center">
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>Created</th>
+                                        <th>Author</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null && Model.Any())
+                                    {
+                                        @foreach (var blog in Model)
+                                        {
+                                            <tr>
+                                                <td><span class="badge bg-success-transparent">@blog.Title</span></td>
+                                                <td><span class="badge bg-info-transparent">@blog.Content</span></td>
+                                                <td><span class="badge bg-danger-transparent">@blog.Created.ToString("dd/MM/yyyy HH:mm")</span></td>
+                                                <td><span class="badge bg-primary-transparent">@(blog.User?.UserName ?? "Unknown")</span></td>
+                                                <td class="text-center">
+                                                    @if (blog.Status == GreTutor.Models.Enums.BlogStatus.Pending)
+                                                    {
+                                                        <span class="badge bg-warning text-dark">Pending</span>
+                                                    }
+                                                    else if (blog.Status == GreTutor.Models.Enums.BlogStatus.Approved)
+                                                    {
+                                                        <span class="badge bg-success">Approved</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-secondary">Rejected</span>
+                                                    }
+                                                </td>
+                                                <td class="text-center">
+                                                    @if (blog.Status == GreTutor.Models.Enums.BlogStatus.Pending)
+                                                    {
+                                                        <form action="@Url.Action("Approve", "ManageBlogList", new { area = "Staff" })" method="post" class="d-inline">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="id" value="@blog.BlogId" />
+                                                            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                                        </form>
+
+                                                        <form action="@Url.Action("Reject", "ManageBlogList", new { area = "Staff" })" method="post" class="d-inline ms-2">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="id" value="@blog.BlogId" />
+                                                            <button type="submit" class="btn btn-warning btn-sm text-dark">Reject</button>
+                                                        </form>
+                                                    }
+                                                    <form action="@Url.Action("Delete", "ManageBlogList", new { area = "Staff" })" method="post" class="d-inline ms-2">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" name="id" value="@blog.BlogId" />
+                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted">There are no blog posts available.</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

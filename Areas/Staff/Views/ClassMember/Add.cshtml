@@ -1,0 +1,148 @@
+@model GreTutor.Areas.Staff.Models.ViewModels.AddClassMemberViewModel
+
+@{
+    ViewData["Title"] = "Add Members to Class";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Add Members to Class</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Class", new { area = "Staff" })">Classes</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add Members</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <!-- Member Selection Form -->
+        <div class="row">
+            <div class="col-xl-12">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">Select Members to Add</div>
+                    </div>
+                    <div class="card-body">
+                        <form id="memberForm" method="post" action="/Staff/ClassMember/AddMultipleMembers">
+                            <input type="hidden" name="ClassId" value="@Model.ClassId" />
+
+                            <div id="grid-search">
+                                <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                                    <div class="gridjs-wrapper" style="height: auto;">
+                                        <table role="grid" class="gridjs-table" style="height: auto;">
+                                            <thead class="gridjs-thead">
+                                                <tr class="gridjs-tr">
+                                                    <th data-column-id="select" class="gridjs-th" style="width: 70px;">
+                                                        <div class="gridjs-th-content text-center">
+                                                            <input type="checkbox" id="selectAll" />
+                                                        </div>
+                                                    </th>
+                                                    <th data-column-id="name" class="gridjs-th" style="width: 150px;">
+                                                        <div class="gridjs-th-content">User Name</div>
+                                                    </th>
+                                                    <th data-column-id="email" class="gridjs-th" style="width: 220px;">
+                                                        <div class="gridjs-th-content">Email</div>
+                                                    </th>
+                                                    <th data-column-id="role" class="gridjs-th" style="width: 120px;">
+                                                        <div class="gridjs-th-content">Role</div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="gridjs-tbody">
+                                                @if (Model.Users != null && Model.Users.Any())
+                                                {
+                                                    @foreach (var user in Model.Users)
+                                                    {
+                                                        <tr class="gridjs-tr">
+                                                            <td data-column-id="select" class="gridjs-td text-center">
+                                                                <input type="checkbox" name="selectedUsers" value="@user.Id" class="user-checkbox" />
+                                                            </td>
+                                                            <td data-column-id="name" class="gridjs-td">@user.UserName</td>
+                                                            <td data-column-id="email" class="gridjs-td">@user.Email</td>
+                                                            <td data-column-id="role" class="gridjs-td">
+                                                                @if (string.IsNullOrEmpty(user.RoleNames))
+                                                                {
+                                                                    <span class="badge bg-secondary-transparent">No Role</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="badge bg-info-transparent">@user.RoleNames</span>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="4" class="text-center text-muted">No users available to add.</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Form Buttons -->
+                            <div class="text-center mt-4">
+                                <a href="@Url.Action("Index", "Class", new { area = "Staff" })" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left"></i> Back to List
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle"></i> Add Selected Members
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Member Selection Form -->
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("memberForm");
+        const checkboxes = document.querySelectorAll(".user-checkbox");
+        const selectAllCheckbox = document.getElementById("selectAll");
+
+        // Validation before submit
+        form.addEventListener("submit", function (event) {
+            const checkedCount = document.querySelectorAll(".user-checkbox:checked").length;
+            if (checkedCount === 0) {
+                alert("Please select at least one member to add!");
+                event.preventDefault();
+            }
+        });
+
+        // Select all functionality
+        selectAllCheckbox.addEventListener("change", function () {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+
+        // Update "select all" checkbox state based on individual selections
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener("change", function() {
+                selectAllCheckbox.checked = 
+                    document.querySelectorAll(".user-checkbox:checked").length === checkboxes.length;
+            });
+        });
+    });
+</script>

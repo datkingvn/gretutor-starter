@@ -1,0 +1,86 @@
+﻿@model GreTutor.Areas.Staff.Models.AddRoleModel
+@{
+    ViewData["Title"] = "Set Role";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">@ViewData["Title"]</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Assign Role</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- End Header -->
+
+        @* Status message *@
+        <partial name="_StatusMessage" for="StatusMessage" />
+
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+                <div class="card custom-card shadow-sm">
+                    <div class="card-header d-flex align-items-center bg-primary text-white">
+                        <div>
+                            <h5 class="text-dark">Assign Role to <span class="text-warning">@Model.User?.UserName</span></h5>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="set-role-form" method="post" asp-action="AddRole" asp-controller="User">
+                            @Html.AntiForgeryToken()
+
+                            @* Validation summary *@
+                            <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+
+                            <div class="mb-4">
+                                <label asp-for="RoleNames" class="form-label fw-semibold">
+                                    <i class="fas fa-user-shield me-2 text-primary"></i> Available Roles
+                                </label>
+                                <div class="select-roles-container">
+                                    @Html.ListBoxFor(m => m.RoleNames, Model.AllRoles, new {
+                                        id = "id-select-roles",
+                                        @class = "form-select",
+                                        size = "6",
+                                        multiple = "multiple"
+                                    })
+                                </div>
+                                <div class="form-text mt-2">
+                                    <i class="fas fa-info-circle me-1 text-primary"></i> Hold Ctrl/Cmd to select multiple roles
+                                </div>
+                                <span asp-validation-for="RoleNames" class="text-danger small"></span>
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 mt-4">
+                                <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="User">
+                                    <i class="fas fa-arrow-left me-1"></i> Cancel
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        $(document).ready(function () {
+            $("#id-select-roles").on("change", function () {
+                $(this).css("transform", "scale(1.02)");
+                setTimeout(function () {
+                    $("#id-select-roles").css("transform", "scale(1)");
+                }, 200);
+            });
+        });
+    </script>

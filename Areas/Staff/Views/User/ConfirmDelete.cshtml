@@ -1,0 +1,65 @@
+﻿@model GreTutor.Areas.Staff.Models.DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Confirm Delete";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Confirm Delete</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Confirm Delete</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+                <div class="card custom-card border-danger shadow-lg">
+                    <div class="card-header bg-danger text-white text-center">
+                        <div class="card-title text-dark fw-bold">Confirm Delete</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning text-center">
+                            <strong>This action will permanently delete the account and cannot be undone.</strong>
+                        </div>
+
+                        <form id="delete-user" asp-action="ConfirmDelete" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="UserId" />
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            @if (Model.RequirePassword)
+                            {
+                                <div class="mb-3">
+                                    <label asp-for="Input.Password" class="form-label fw-semibold">Enter Password to Confirm</label>
+                                    <input asp-for="Input.Password" class="form-control border-danger" autocomplete="current-password"
+                                        placeholder="Enter your password" required />
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                            }
+
+                            <button class="btn btn-danger w-100 btn-lg" type="submit">
+                                <i class="fas fa-trash-alt"></i> Delete Account
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-secondary w-100 mt-2">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>@ViewData["Title"] - GreTutor</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
+
+  <!-- CSS
+ ============================================ -->
+
+  <!-- Icon Font CSS -->
+  <link rel="stylesheet" href="~/assets/css/plugins/icofont.min.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/flaticon.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="~/assets/css/plugins/animate.min.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/nice-select.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/apexcharts.css" />
+  <link rel="stylesheet" href="~/assets/css/plugins/jqvmap.min.css" />
+
+  <!-- Main Style CSS -->
+  <link rel="stylesheet" href="~/assets/css/style.css" />
+  <style>
+    /* Nền tổng thể khi bật dark mode */
+    body.dark-mode {
+      background-color: #121212;
+    }
+
+    /* Các khu vực nền dark, giữ nguyên màu chữ gốc */
+    .dark-mode .card,
+    .dark-mode .table,
+    .dark-mode .header-main,
+    .dark-mode .alert,
+    .dark-mode .slider-section,
+    .dark-mode .footer-section,
+    .dark-mode .section,
+    .dark-mode .slider-content,
+    .dark-mode .call-to-action-wrapper,
+    .dark-mode .how-it-work-wrapper,
+    .dark-mode .testimonial-wrapper {
+      background-color: #1e1e1e !important;
+      color: inherit !important;
+    }
+
+    /* Giữ nguyên màu chữ cho tất cả thành phần văn bản */
+    .dark-mode h1,
+    .dark-mode h2,
+    .dark-mode h3,
+    .dark-mode h4,
+    .dark-mode h5,
+    .dark-mode h6,
+    .dark-mode p,
+    .dark-mode span,
+    .dark-mode a,
+    .dark-mode .main-title,
+    .dark-mode .sub-title,
+    .dark-mode .title,
+    .dark-mode .testimonial-content,
+    .dark-mode .designation,
+    .dark-mode .how-it-work-wrapper h2,
+    .dark-mode .how-it-work-wrapper h3,
+    .dark-mode .how-it-work-wrapper h5,
+    .dark-mode .how-it-work-wrapper p,
+    .dark-mode .how-it-work-wrapper span {
+      color: #inherit !important;
+    }
+
+    /* Nút trong dark mode */
+    .dark-mode .btn-outline-primary {
+      border-color: #888;
+      color: inherit;
+    }
+
+    .dark-mode .btn-outline-primary:hover {
+      background-color: #444;
+      color: #fff;
+    }
+
+    /* Menu dropdown */
+    .dark-mode .sub-menu {
+      background-color: #222;
+    }
+
+    .dark-mode .sub-menu a:hover {
+      background-color: #333;
+    }
+
+    /* Nút toggle dark mode */
+    .dark-mode-toggle-btn {
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 5px;
+      color: inherit;
+    }
+
+    .dark-mode-toggle-btn:hover {
+      color: #ffd700;
+    }
+
+    /* Ngăn chế độ dark làm tối phần Call to Action */
+    .dark-mode .call-to-action-wrapper {
+      background-color: #e9f7f0 !important;
+      /* giữ nguyên nền xanh nhạt */
+      color: #1c1d1f !important;
+      /* giữ nguyên màu chữ đậm */
+    }
+
+    .dark-mode .call-to-action-wrapper h2,
+    .dark-mode .call-to-action-wrapper h5,
+    .dark-mode .call-to-action-wrapper p,
+    .dark-mode .call-to-action-wrapper span {
+      color: #1c1d1f !important;
+      /* giữ nguyên text đậm như light mode */
+    }
+
+
+    /* Footer trong dark mode */
+    .dark-mode .footer-section {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    .dark-mode .footer-section a {
+      color: #ccc;
+    }
+
+    .dark-mode .footer-section a:hover {
+      color: #fff;
+    }
+
+    .dark-mode .footer-section input {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+      border: 1px solid #555;
+    }
+
+    .dark-mode .footer-section .btn {
+      background-color: #2c2c2c;
+      color: #eee;
+      border-color: #444;
+    }
+  </style>
+
+
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <!-- Header Section Start -->
+    <div class="header-section">
+      <!-- Header Top Start -->
+      <div class="header-top d-none d-lg-block">
+        <div class="container">
+          <!-- Header Top Wrapper Start -->
+          <div class="header-top-wrapper d-flex justify-content-center">
+            <div class="header-top-left">
+              <p>Learn to become <a href="#">Intelligent people’s.</a></p>
+            </div>
+          </div>
+          <!-- Header Top Wrapper End -->
+        </div>
+      </div>
+      <!-- Header Top End -->
+
+      <!-- Header Main Start -->
+      <div class="header-main">
+        <div class="container">
+          <!-- Header Main Start -->
+          <div class="header-main-wrapper">
+            <!-- Header Logo Start -->
+            <div class="header-logo">
+              <a href="/"><img src="~/assets/images/logo.png" alt="Logo" /></a>
+            </div>
+            <!-- Header Logo End -->
+
+            <!-- Header Menu Start -->
+            <div class="header-menu d-none d-lg-block">
+              <ul class="nav-menu">
+                <li><a href="~/Home">Home</a></li>
+                <li>
+                  <a href="~/Classroom">Classroom</a>
+                </li>
+                <li>
+                  <a href="#">Blog</a>
+                  <ul class="sub-menu">
+                    <li><a href="~/Blog/HomeBlog">Home Blog</a></li>
+                    <li><a href="~/Blog">My Blog</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="~/About">About </a>
+                </li>
+                <li><a href="~/Contact">Contact</a></li>
+                <li>
+                  <a href="~/PersonalDashboard">My Dashboard</a>
+                </li>
+                @if (User.IsInRole("Staff"))
+                {
+                  <li>
+                    <a asp-action="StaffDashboard" asp-controller="Dashboard"
+                          asp-area="Staff">Staff Menu </a>
+                          </li>
+                }
+                <li>
+                  <a href="#">Account </a>
+                  <ul class="sub-menu">
+                    <li>
+                      <partial name="_LoginPartial" />
+                    </li>
+                  </ul>
+                </li>
+                <div class="ms-auto d-none d-lg-block">
+                  <!-- Dark mode toggle icon -->
+                  <button id="darkModeToggle" class="btn btn-sm btn-dark-mode-toggle" title="Toggle dark mode">
+                    🌙
+                  </button>
+                </div>
+            </div>
+            </ul>
+
+          </div>
+          <!-- Header Menu End -->
+          <!-- Header Sing In & Up End -->
+        </div>
+        <!-- Header Main End -->
+      </div>
+    </div>
+    <!-- Header Main End -->
+
+  </div>
+
+  <!-- Overlay Start -->
+  <div class="overlay"></div>
+  <!-- Overlay End -->
+
+  <!-- Header Section End -->
+  @RenderBody()
+  <!-- Footer Start  -->
+  <div class="section footer-section">
+    <!-- Footer Widget Section Start -->
+    <div class="footer-widget-section">
+      <img class="shape-1 animation-down" src="~/assets/images/shape/shape-21.png" alt="Shape" />
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 order-md-1 order-lg-1">
+            <!-- Footer Widget Start -->
+            <div class="footer-widget">
+              <div class="widget-logo">
+                <a href="#"><img src="~/assets/images/logo.png" alt="Logo" /></a>
+              </div>
+
+              <div class="widget-address">
+                <h4 class="footer-widget-title">658 Ngo Quyen</h4>
+                <p>An Hai Bac Ward, Son Tra District, Da Nang, Vietnam.</p>
+              </div>
+
+              <ul class="widget-info">
+                <li>
+                  <p>
+                    <i class="flaticon-email"></i>
+                    <a href="mailto:dat.dev.gw@gmail.com">dat.dev.gw@gmail.com</a>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <i class="flaticon-phone-call"></i>
+                    <a href="tel:9702621413">(+84) 762.117.038</a>
+                  </p>
+                </li>
+              </ul>
+
+              <ul class="widget-social">
+                <li>
+                  <a href="#"><i class="flaticon-facebook"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="flaticon-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="flaticon-skype"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="flaticon-instagram"></i></a>
+                </li>
+              </ul>
+            </div>
+            <!-- Footer Widget End -->
+          </div>
+          <div class="col-lg-6 order-md-3 order-lg-2">
+            <!-- Footer Widget Link Start -->
+            <div class="footer-widget-link">
+              <!-- Footer Widget Start -->
+              <div class="footer-widget">
+                <h4 class="footer-widget-title">Category</h4>
+
+                <ul class="widget-link">
+                  <li><a href="#">Creative Writing</a></li>
+                  <li><a href="#">Film & Video</a></li>
+                  <li><a href="#">Graphic Design</a></li>
+                  <li><a href="#">UI/UX Design</a></li>
+                  <li><a href="#">Business Analytics</a></li>
+                  <li><a href="#">Marketing</a></li>
+                </ul>
+              </div>
+              <!-- Footer Widget End -->
+
+              <!-- Footer Widget Start -->
+              <div class="footer-widget">
+                <h4 class="footer-widget-title">Quick Links</h4>
+
+                <ul class="widget-link">
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Discussion</a></li>
+                  <li><a href="#">Terms & Conditions</a></li>
+                  <li><a href="#">Customer Support</a></li>
+                  <li><a href="#">Course FAQ’s</a></li>
+                </ul>
+              </div>
+              <!-- Footer Widget End -->
+            </div>
+            <!-- Footer Widget Link End -->
+          </div>
+          <div class="col-lg-3 col-md-6 order-md-2 order-lg-3">
+            <!-- Footer Widget Start -->
+            <div class="footer-widget">
+              <h4 class="footer-widget-title">Subscribe</h4>
+
+              <div class="widget-subscribe">
+                <p>Get the latest news and articles to your inbox.</p>
+
+                <div class="widget-form">
+                  <form action="#">
+                    <input type="text" placeholder="Email here" />
+                    <button class="btn btn-primary btn-hover-dark">
+                      Subscribe Now
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- Footer Widget End -->
+          </div>
+        </div>
+      </div>
+
+      <img class="shape-2 animation-left" src="~/assets/images/shape/shape-22.png" alt="Shape" />
+    </div>
+    <!-- Footer Widget Section End -->
+
+    <!-- Footer Copyright Start -->
+    <div class="footer-copyright">
+      <div class="container">
+        <!-- Footer Copyright Start -->
+        <div class="copyright-wrapper">
+          <div class="copyright-link">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Security</a>
+          </div>
+          <div class="copyright-text">
+            <p>
+              &copy; Made with
+              <i class="icofont-heart-alt"></i> by
+              <a href="#">Team GreTutor</a>
+            </p>
+          </div>
+        </div>
+        <!-- Footer Copyright End -->
+      </div>
+    </div>
+    <!-- Footer Copyright End -->
+  </div>
+  <!-- Footer End -->
+
+  <!--Back To Start-->
+  <a href="#" class="back-to-top">
+    <i class="icofont-simple-up"></i>
+  </a>
+  <!--Back To End-->
+  </div>
+
+  <!-- JS
+    ============================================ -->
+
+  <!-- Modernizer & jQuery JS -->
+  <script src="~/assets/js/vendor/modernizr-3.11.2.min.js"></script>
+  <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="~/assets/js/plugins/popper.min.js"></script>
+  <script src="~/assets/js/plugins/bootstrap.min.js"></script>
+
+  <!-- Plugins JS -->
+  <script src="~/assets/js/plugins/swiper-bundle.min.js"></script>
+  <script src="~/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script src="~/assets/js/plugins/video-playlist.js"></script>
+  <script src="~/assets/js/plugins/jquery.nice-select.min.js"></script>
+  <script src="~/assets/js/plugins/ajax-contact.js"></script>
+
+  <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+  <!-- <script src="assets/js/plugins.min.js"></script> -->
+
+  <!-- Main JS -->
+  <script src="~/assets/js/main.js"></script>
+  <script>
+    const toggleBtn = document.getElementById("darkModeToggle");
+
+    toggleBtn.addEventListener("click", function () {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+      toggleBtn.textContent = isDark ? "☀️" : "🌙"; // chuyển icon theo chế độ
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const isDark = localStorage.getItem("darkMode") === "true";
+      if (isDark) {
+        document.body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️";
+      }
+    });
+  </script>
+
+  @RenderSection("Scripts", required: false)
+</body>
+
+</html>

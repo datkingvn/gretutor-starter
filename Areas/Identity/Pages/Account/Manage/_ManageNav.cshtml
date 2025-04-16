@@ -1,0 +1,31 @@
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<div class="d-flex flex-column p-3 rounded shadow-sm bg-primary bg-gradient text-white">
+    <div class="d-flex justify-content-center mb-3">
+        <h5 class="text-white">Manage Account</h5>
+    </div>
+    <div class="nav flex-column nav-pills">
+        <a class="nav-link py-2 text-white @(ManageNavPages.IndexNavClass(ViewContext) == "active" ? "active me-md-2" : "")" asp-page="./Index">
+            <i class="bi bi-person-circle me-2"></i> Profile
+        </a>
+        <a class="nav-link py-2 text-white @(ManageNavPages.EmailNavClass(ViewContext) == "active" ? "active me-md-2" : "")" asp-page="./Email">
+            <i class="bi bi-envelope me-2"></i> Email
+        </a>
+        <a class="nav-link py-2 text-white @(ManageNavPages.ChangePasswordNavClass(ViewContext) == "active" ? "active me-md-2" : "")" asp-page="./ChangePassword">
+            <i class="bi bi-shield-lock me-2"></i> Change Password
+        </a>
+        @if (hasExternalLogins)
+        {
+            <a class="nav-link py-2 text-white @(ManageNavPages.ExternalLoginsNavClass(ViewContext) == "active" ? "active me-md-2" : "")" asp-page="./ExternalLogins">
+                <i class="bi bi-box-arrow-in-right me-2"></i> External Logins
+            </a>
+        }
+        <a class="nav-link py-2 text-white @(ManageNavPages.PersonalDataNavClass(ViewContext) == "active" ? "active me-md-2" : "")" asp-page="./PersonalData">
+            <i class="bi bi-database me-2"></i> Personal Data
+        </a>
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+@model GreTutor.Models.Entities.Class
+
+@{
+    ViewData["Title"] = "Edit Class";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Edit Class</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Class", new { area = "Staff" })">Classes</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <!-- Class Edit Form -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Edit Class Details
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+                        {
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Name, new { @class = "form-label" })
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter class name" })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer text-end border-top pt-3">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a href="@Url.Action("Index", "Class", new { area = "Staff" })" class="btn btn-secondary">
+                                        <i class="fas fa-arrow-left me-1"></i> Back to List
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-1"></i> Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Class Edit Form -->
+    </div>
+</div>

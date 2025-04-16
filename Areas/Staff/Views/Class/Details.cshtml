@@ -1,0 +1,111 @@
+@model IEnumerable<GreTutor.Models.Entities.ClassMember>
+
+@{
+    ViewData["Title"] = "Member List";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="main-content app-content">
+        <div class="container-fluid">
+        <!-- Page Header -->
+        <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+            <h1 class="page-title fw-semibold fs-18 mb-0">Details Class</h1>
+            <div class="ms-md-1 ms-0">
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="#">GreTutor</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Details Class</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- Page Header Close -->
+
+        <div class="row">
+          <div class="col-xl-12">
+                  @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+            <div class="card custom-card">
+              <div class="card-header">
+                <div class="card-title"> Details of Classes </div>
+              </div>
+              <div class="card-body">
+                <div id="grid-search">
+                  <div role="complementary" class="gridjs gridjs-container" style="width: 100%;">
+                    <div class="gridjs-wrapper" style="height: auto;">
+                      <table role="grid" class="gridjs-table" style="height: auto;">
+                        <thead class="gridjs-thead">
+                          <tr class="gridjs-tr">
+                            <th data-column-id="name" class="gridjs-th" style="width: 150px;">
+                              <div class="gridjs-th-content">Member Name</div>
+                            </th>
+                            <th data-column-id="email" class="gridjs-th" style="width: 200px;">
+                              <div class="gridjs-th-content">Email</div>
+                            </th>
+                            <th data-column-id="id" class="gridjs-th" style="width: 150px;">
+                              <div class="gridjs-th-content">Role</div>
+                            </th>
+                            <th data-column-id="price" class="gridjs-th" style="width: 100px;">
+                              <div class="gridjs-th-content">Action</div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="gridjs-tbody">
+                                        @if (Model != null && Model.Any())
+                {
+                    @foreach (var member in Model)
+                    {
+                          <tr class="gridjs-tr">
+                            <td data-column-id="name" class="gridjs-td">@member.User.UserName</td>
+                            <td data-column-id="email" class="gridjs-td">@member.User.Email</td>
+                            <td data-column-id="id" class="gridjs-td"><span class="badge bg-primary-transparent">@member.Role</span></td>
+                            <td data-column-id="price" class="gridjs-td"><form id="removeForm-@member.UserId" method="post" action="/Staff/ClassMember/Remove">
+                                    <input type="hidden" name="classId" value="@member.ClassId" />
+                                    <input type="hidden" name="userId" value="@member.UserId" />
+                                    @Html.AntiForgeryToken()
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmRemove('@member.UserId')">
+                                        <i class="bi bi-trash"></i><i class="fas fa-trash-alt"></i> Delete
+                                    </button>
+                                </form></td>
+                          </tr>
+                                              }
+
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">There are no members in the class.</td>
+                    </tr>
+                }
+                        </tbody>
+                      </table>
+                    </div>
+                    <div id="gridjs-temp" class="gridjs-temp"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div class="text-center m-5">
+        <!-- Button Quay lại -->
+        <a href="@Url.Action("Index", "Class", new { area = "Staff" })" class="btn btn-secondary">
+            <i class="fas fa-backward"></i> Back to List
+        </a>
+    </div>
+</div>
+
+
+<script>
+    function confirmRemove(userId) {
+        if (confirm("Are you sure you want to delete this member?")) {
+            document.getElementById("removeForm-" + userId).submit();
+        }
+    }
+</script>

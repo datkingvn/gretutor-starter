@@ -1,0 +1,224 @@
+@model GreTutor.Models.Entities.BlogPost
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Title;
+
+    // Author name and avatar URL logic
+    var authorName = Model.User?.UserName ?? "Unknown";
+    var avatarUrl = $"https://ui-avatars.com/api/?name={Uri.EscapeDataString(authorName)}&background=random&color=random";
+}
+
+<!-- Page Banner Start -->
+@await Html.PartialAsync("_PageBannerStart")
+<!-- Page Banner End -->
+
+<!-- Blog Details Start -->
+<div class="section section-padding mt-n10">
+    <div class="container">
+        <div class="row flex-row-reverse gx-10">
+            <div class="col-lg-8">
+                <!-- Blog Details Wrapper Start -->
+                <div class="blog-details-wrapper">
+                    <div class="blog-details-admin-meta">
+                        <div class="author">
+                            <div class="author-thumb">
+                                <a href="#"><img src="@avatarUrl" alt="Author" /></a>
+                            </div>
+                            <div class="author-name">
+                                <a class="name" href="#">@Html.Raw(Model.User?.UserName)</a>
+                            </div>
+                        </div>
+                        <div class="blog-meta">
+                            <span><i class="icofont-calendar"></i> @Model.Created.ToString("dd/MM/yyyy")</span>
+                            <span class="tag"><a href="#">GreTutor</a></span>
+                        </div>
+                    </div>
+
+                    <h2 class="title">@Html.Raw(Model.Title)</h2>
+
+                    <div class="blog-details-description">
+                        <p>@Html.Raw(Model.Content)</p>
+                    </div>
+
+                    <div class="blog-details-label">
+                        <h4 class="label">Tags:</h4>
+                        <ul class="tag-list">
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Learning</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-details-label">
+                        <h4 class="label">Share:</h4>
+                        <ul class="social">
+                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                            <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Blog Details Wrapper End -->
+
+                <!-- Blog Comments Section Start -->
+                <div class="blog-details-comment">
+                    <div class="comment-wrapper">
+                        <h3 class="title">Comments (@(Model.Comments?.Count ?? 0))</h3>
+
+                        @if (Model.Comments?.Any() ?? false)
+                        {
+                            <ul class="comment-items">
+                                @foreach (var comment in Model.Comments)
+                                {
+                                    <li class="single-comment-container">
+                                        <div class="single-comment">
+                                            <div class="comment-author">
+                                                <div class="author-thumb">
+                                                    <img src="@($"https://ui-avatars.com/api/?name={Uri.EscapeDataString(comment.User?.UserName ?? "Anonymous")}&background=random")" alt="Author" />
+                                                </div>
+                                                <div class="author-content">
+                                                    <h4 class="name">@(comment.User?.UserName ?? "Anonymous")</h4>
+                                                    <div class="meta">
+                                                        <span class="time">@comment.Created.ToString("dd/MM/yyyy HH:mm")</span>
+                                                    </div>
+                                                </div>
+
+                                                @if (User.Identity.IsAuthenticated &&
+                                                     (User.Identity.Name == comment.User?.UserName || User.IsInRole("Staff")))
+                                                {
+                                                    <div class="comment-actions">
+                                                        <button type="button" class="btn btn-warning btn-sm"
+                                                                onclick="toggleEditForm(@comment.CommentId)">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </button>
+                                                        <form asp-action="Delete" asp-controller="Comment" method="post"
+                                                              onsubmit="return confirm('Are you sure you want to delete this comment?');"
+                                                              class="d-inline">
+                                                            <input type="hidden" name="commentId" value="@comment.CommentId" />
+                                                            <input type="hidden" name="blogId" value="@Model.BlogId" />
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-trash"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                            <p class="comment-text">@Html.Raw(comment.Content)</p>
+
+                                            <!-- Edit Comment Form -->
+                                            <div id="edit-form-@comment.CommentId" class="single-form" style="display:none;">
+                                                <form asp-action="Edit" asp-controller="Comment" method="post">
+                                                    <input type="hidden" name="CommentId" value="@comment.CommentId" />
+                                                    <input type="hidden" name="blogId" value="@Model.BlogId" />
+                                                    <div class="form-group">
+                                                        <textarea name="Content" class="form-control" rows="3" required>@comment.Content</textarea>
+                                                    </div>
+                                                    <div class="edit-form-actions mt-2">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-save"></i> Save Changes
+                                                        </button>
+                                                        <button type="button" class="btn btn-secondary btn-sm"
+                                                                onclick="toggleEditForm(@comment.CommentId)">
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p class="text-center text-muted">No comments yet. Be the first to comment!</p>
+                        }
+                    </div>
+
+                    <!-- Add Comment Section -->
+                    <div class="single-form">
+                        <h3 class="title">Leave a Comment</h3>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <form asp-action="Create" asp-controller="Comment" method="post">
+                                <input type="hidden" name="blogId" value="@Model.BlogId" />
+                                <div class="form-group">
+                                    <textarea name="content" class="form-control" rows="4"
+                                              placeholder="Write your comment here..." required></textarea>
+                                </div>
+                                <div class="form-group text-center mt-3">
+                                    <button type="submit" class="btn btn-primary btn-hover-dark">
+                                        Submit Comment
+                                    </button>
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <p>Please <a asp-controller="Account" asp-action="Login">login</a> to leave a comment.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- Blog Comments Section End -->
+            </div>
+
+            <!-- Sidebar Start -->
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <!-- Search Widget -->
+                    <div class="sidebar-widget widget-search">
+                        <form action="#">
+                            <input type="text" placeholder="Search here" />
+                            <button><i class="icofont-search-1"></i></button>
+                        </form>
+                    </div>
+
+                    <!-- Popular Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Popular Tags</h4>
+                        <div class="widget-tags">
+                            <ul class="tags-list">
+                                <li><a href="#">Design</a></li>
+                                <li><a href="#">Education</a></li>
+                                <li><a href="#">Technology</a></li>
+                                <li><a href="#">Learning</a></li>
+                                <li><a href="#">Development</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Share Widget -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">Share Course:</h4>
+                        <ul class="social">
+                            <li><a href="#"><i class="flaticon-facebook"></i></a></li>
+                            <li><a href="#"><i class="flaticon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="flaticon-twitter"></i></a></li>
+                            <li><a href="#"><i class="flaticon-skype"></i></a></li>
+                            <li><a href="#"><i class="flaticon-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+</div>
+<!-- Blog Details End -->
+
+<script>
+    function toggleEditForm(commentId) {
+        var editForm = document.getElementById("edit-form-" + commentId);
+        editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
